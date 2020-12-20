@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+
+<script>
+    // ES5之前因为if和佛如都没有块级作用域的概念，所以在很多时候，我们都必须借助于function的作用域来剞劂应用外面变量的问题
+    // ES6中，加入了let，通过let定义的变量是有if和for的块级作用域的
+    // 1. 变量作用域： 变量在什么范围内是可用的
+    {
+        var name = 'hello';
+        console.log(name);
+    }
+    console.log(name);
+
+    // 2. 没有块级作用域引起的问题: if的块级
+    var func;
+    if (true) {
+        var name = "hello"
+        func = function () {
+            console.log(name)
+        }
+        // func()
+    }
+    // 没有块作用域，name可能会外界改变
+    name = 'changed name'
+    func()
+
+    // 3. 没有块级作用域引起的问题：for的块级
+    // 闭包可以解决块作用域的问题：因为函数作用域起作用
+    // 每次点击均显示i=4
+    var btns = document.getElementsByTagName('button')
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            console.log('第' + i + '个按钮被点击');
+        })
+    }
+
+    // 使用let定义变量, 可以正常显示
+    var btns = document.getElementsByTagName('button')
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            console.log('第' + i + '个按钮被点击');
+        })
+    }
+</script>
+</body>
+</html>

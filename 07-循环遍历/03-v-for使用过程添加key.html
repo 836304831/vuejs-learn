@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <!--  加上key之后,会先将key和之前的对比,值不变时不会改变,以此提升性能(只需要变量添加或修改的某一项) ,key不能绑定index,达不到效果     -->
+        <li v-for="item in letters" :key="item"> {{item}}</li>
+    </ul>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            letters: ["A", "B", "C", "D", "E"]
+        },
+    })
+</script>
+
+</body>
+</html>

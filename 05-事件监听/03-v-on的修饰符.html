@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--  通过stop, 不会调用父标签的点击  -->
+    <div @click="divClick"> div点击
+        <button @click.stop="btnClick">按钮</button>
+    </div>
+
+    <!--  prevent修饰符的使用  -->
+    <br>
+    <form action="baidu">
+        <input type="submit" value="提交" @click.prevent="submitClick">
+    </form>
+
+    <!-- 3. 监听某个键盘的键帽  -->
+    <br>
+    <input type="text" @keyup.enter="keyUp">
+
+    <!-- 4. .once的使用  -->
+    <br>
+    <button @click.once="btn2Click">按钮</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            counter: 0
+        },
+        methods: {
+            btnClick() {
+                console.log("btn1click");
+            },
+            divClick() {
+                console.log("devClick");
+            },
+            submitClick() {
+                console.log("submitClick");
+            },
+            keyUp() {
+                console.log("keyUp");
+            },
+            btn2Click() {
+                console.log("btn2Click");
+            }
+
+        }
+
+    })
+</script>
+
+</body>
+</html>

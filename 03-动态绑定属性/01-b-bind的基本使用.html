@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!-- 属性中不能直接使用mustache语法， 下方是错误用法 -->
+   <!-- <img src="{{msg}}}" alt=""> -->
+    <img v-bind:src="imgURL" alt="">
+    <a v-bind:href="ahref" >百度一下</a>
+
+    <!-- 语法糖表示法 -->
+    <img :src="imgURL" alt="">
+    <a :href="ahref" >百度一下</a>
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello",
+            imgURL: "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+            ahref: "http://www.baidu.com"
+        },
+    })
+</script>
+
+</body>
+</html>

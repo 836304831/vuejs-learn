@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+    <!--  1. 在遍历对象的过程中,如果知识获取一个值,那么获取到的时value  -->
+    <div v-if="booksInfo.length">
+        <table>
+            <thead>
+            <tr>
+                <th>书编号</th>
+                <th>书籍名称</th>
+                <th>出版日志</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+             <tr v-for="(item, index) in booksInfo">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.press}}</td>
+                <!-- <td>{{getFinalPrice(item.price)}}</td>-->
+                <!-- 也可以使用过滤器  -->
+                 <td>{{item.price | showPrice}}</td>
+                <td>
+                    <button v-on:click="subBook(index)" v-bind:disabled="item.count <= 1">-</button>
+                    <label>{{item.count}} </label>
+                    <button v-on:click="addBook(index)">+</button>
+                </td>
+
+                <td>
+                    <button v-on:click="removeBook(index)">移除</button>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+        <label>总价: {{totalPrice | showPrice}} </label>
+    </div>
+    <h2 v-else> 购物车为空 </h2>
+</div>
+<script src="../js/vue.js"> </script>
+<script src="main.js"> </script>
+</body>
+</html>

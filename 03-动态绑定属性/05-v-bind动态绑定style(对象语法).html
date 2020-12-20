@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!-- stype 绑定
+        <h2 :style="{key（属性名）: vlaue(属性值)}">{{msg}}</h2>
+    -->
+    <h2 :style="{fontSize: showSize + 'px', color: showColor}">{{msg}}</h2>
+
+    <h2 :style="getStyles()">{{msg}}</h2>
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello",
+            showSize: 50,
+            showColor: 'red'
+        },
+        methods: {
+            getStyles: function () {
+                return {fontSize: this.showSize + 'px', color: this.showColor}
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

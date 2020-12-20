@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <!--  加上key之后,会先将key和之前的对比,值不变时不会改变,以此提升性能(只需要变量添加或修改的某一项) ,key不能绑定index,达不到效果     -->
+        <li v-for="item in letters" :key="item"> {{item}}</li>
+    </ul>
+    <button @click="btnClick">按钮</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            letters: ["A", "B", "C", "D", "E"]
+        },
+        methods: {
+            btnClick() {
+                // *******  响应式方法 *********
+                //    1. push方法,可添加多个元素
+                // this.letters.push("aaa", "bbb", "ccc")
+
+                // 2. pop 删除数组中的最后一个元素
+                // this.letters.pop()
+
+                // 3. 删除数组中的第一个元素
+                // this.letters.shift()
+
+                // 4. unshift: 在数组最前面添加元素, 可添加多个元素
+                // this.letters.unshift("aaa", "bbb", "ccc")
+
+                // 5. splice作用: 删除元素,插入元素,替换元素
+                // 第一个元素表示操作数组的起始位置
+                // 删除元素:第二个元素表示删除的元素个数, 若只有一个参数时表示参数所有元素
+                // 第三个及以后的元素,表示先删掉第二个参数指定的元素数量,然后第三个元素开始均依次添加到数组中
+                // this.letters.splice(2, 2, "cc", "dd", "ee", 'ff')
+
+                // 6. sort
+                // this.letters.sort()
+
+                // 7. reverse
+                this.letters.reverse()
+
+
+                // *******  非响应式方法: 通过下标修改的元素时非响应的 *********
+                // 1. 通过索引修改数组中的元素,不会马上响应
+                this.letters[0] = "bbb"
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

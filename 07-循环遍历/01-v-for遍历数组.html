@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"> </script>
+
+<div id="app">
+    <!--  只显示列表值  -->
+    <ul>
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+    <!--  获取列表值和下表  -->
+    <ul>
+        <li v-for="(item, index) in movies">{{index}}-{{item}}</li>
+    </ul>
+</div>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello",
+            movies: [
+                "星际穿越",
+                "大话西游",
+                "少年派",
+                "盗梦空间"
+            ]
+        }
+    })
+</script>
+</body>
+</html>
