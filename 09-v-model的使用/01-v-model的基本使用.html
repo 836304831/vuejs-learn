@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!-- 将msg与input输入框绑定， 双向绑定
+        后台修改msg的值，input框的值也会改变
+        input框中改变内容，msg也会跟着改
+    -->
+    <input type="text" v-model="msg">
+    <h2>{{msg}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+    })
+</script>
+
+</body>
+</html>

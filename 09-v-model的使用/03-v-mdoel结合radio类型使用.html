@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!-- name一致就会互斥，因为提交到后台name会作为key-->
+    <label for="male">
+        <input type="radio" id="male" name="sex" value="男" v-model="sex">男
+
+    </label>
+    <label for="female">
+        <input type="radio" id="female" name="sex" value="女" v-model="sex">女
+    </label>
+    <h2>
+        你选择的是：{{sex}}
+    </h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello",
+            sex: '男'
+        },
+    })
+</script>
+
+</body>
+</html>

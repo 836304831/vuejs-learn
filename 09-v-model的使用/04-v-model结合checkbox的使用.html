@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!-- 1. checkbox 单选框-->
+    <label for="license">
+        <input type="checkbox" id="license" v-model="isAgree">同意协议
+    </label>
+    <h2>你选择的是：{{isAgree}}</h2>
+    <button :disabled="!isAgree"> 下一步</button>
+
+    <br><br><br>
+
+    <!--  2. checkbox多选框
+          使用label可以保证选择文字也可以选中复选框
+    -->
+    <label>
+        <input type="checkbox" value="篮球" v-model="hobbies">篮球
+    </label>
+    <label>
+        <input type="checkbox" value="足球" v-model="hobbies">足球
+    </label>
+    <label>
+        <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+    </label>
+    <label>
+        <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+    </label>
+    <h2>您的爱好是: {{hobbies}}</h2>
+    <br><br>
+
+    <!--  3. 值绑定 v-bind(:)-->
+    <label v-for="item in originHobbies" :for="item" >
+        <input type="checkbox" :id="item" :value="item" v-model="hobbies">{{item}}
+    </label>
+    <h2>您的爱好是: {{hobbies}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello",
+            isAgree: false,
+            hobbies: [],
+            originHobbies: ["篮球", "足球", "乒乓球", "台球", "羽毛球"]
+
+
+        },
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-model="msg">
+    <br>
+    <!--  v-model的原理相当于v-bind + v-on
+          v-bind: 将后台变量绑定到input框中
+          v-on: 监听input框的值，赋值给后台的msg
+    -->
+    <input type="text" v-bind:value="msg" v-on:input="valueChange">
+    <br>
+    <input type="text" v-bind:value="msg" v-on:input="msg=$event.target.value">
+    <br>
+    <h2>{{msg}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+        methods: {
+            valueChange(event) {
+                console.log("valueChange");
+                event.target.value
+                this.msg = event.target.value
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
