@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!-- slot的使用
+        1. slot的占位, 在子模块中 <slot> </slot>
+        2. 设置slot默认值
+        3. 如果有多个值需要放入slot时,slot会全部替换
+    -->
+    <cpn>
+    <!-- slot内容-->
+        <button>按钮</button>
+    </cpn>
+    <cpn>
+        <span> span</span>
+    </cpn>
+    <cpn>
+        <i> iii</i>
+        <div> 我是div元素</div>
+        <p>我是p元素</p>
+    </cpn>
+    <cpn>
+        <button>按钮</button>
+    </cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h2>我是组件</h2>
+        <p>我是组件,我最强</p>
+
+        <!-- 默认值-->
+        <slot><button>按钮</button></slot>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const cpn = {
+        template: "#cpn"
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+        components: {
+            cpn: cpn
+        }
+    })
+</script>
+
+</body>
+</html>
