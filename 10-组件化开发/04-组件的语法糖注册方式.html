@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    传统注册方式
+    <my-cpn></my-cpn>
+
+    语法糖注册方式
+    <div>
+        <cpn1></cpn1>
+    </div>
+
+    实例注册方式
+    <cpn2></cpn2>
+    <h2>{{msg}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+    // **********  传统注册方法： 先定义，后注册 ************
+    const cpmConstruct = Vue.extend({
+        template: `<div>
+                        <h2>我是标题</h2>
+                        <p> 我是内容</p>
+                   </div>`
+    })
+    Vue.component('my-cpn', cpmConstruct)
+
+
+    // **********  全局组件注册的语法糖 ************
+    Vue.component("cpn1", {
+        template: `
+            <div>
+                <h2>我是标题1</h2>
+                <p>我是内容1</p>
+            </div>
+
+        `
+    })
+
+    // 局部注册组件语法糖
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+        components: {
+            "cpn2": {
+                template: `
+                    <div>
+                        <h2>我是标题2</h2>
+                        <p>我是内容2</p>
+                    </div>
+                `
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

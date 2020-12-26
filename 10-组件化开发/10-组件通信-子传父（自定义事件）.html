@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--    不支持驼峰命名变量, 可以使用中划线代替-->
+    <!--  childMyMsg 写成 child-my-msg -->
+    <cpn v-bind:msg="msg" v-on:item-click="cpnClick"></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h2>{{msg}}</h2>
+        <button v-for="item in categories" v-on:click="btnClick(item)">{{item.name}}</button>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    // 父组件向子组件传送数据，通过props属性传送
+    // 子组件向父父组件发送信息，通过自定义触发事件
+    const cpn = {
+        template:`#cpn`,
+        props: {
+            msg: {
+                type: String,
+                default: 'aaa'
+            }
+        },
+        data() {
+            return {
+                categories: [
+                    {id: 'aaa', name: '热门推荐'},
+                    {id: 'bbb', name: '手机数码'},
+                    {id: 'ccc', name: '家用家电'}
+                ]
+            }
+        },
+        methods: {
+            btnClick(item) {
+                // 将子组件传给父组件
+                this.$emit('item-click', item)
+                // console.log(item);
+            }
+        }
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+        components:{
+            cpn: cpn
+        },
+        methods: {
+            cpnClick(item) {
+                console.log("cpnclick");
+                console.log(item);
+            }
+        }
+
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{msg}}</h2>
+    <cpn></cpn>
+    <cpn></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h2> 当前计数: {{counter}}</h2>
+        <button v-on:click="increment">+</button>
+        <button v-on:click="decrement">-</button>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const obj = {
+        counter: 0
+    }
+    // 1. 注册组件
+    Vue.component("cpn", {
+        template: "#cpn",
+        data() {
+            return {
+                counter: 0
+            }
+            // 如果返回创建好的对象，则在每次使用组件时，值是一样的， 为了保证每次使用组件的独立性，尽量使用上面返回对象的方法
+            // return obj
+        },
+        methods: {
+            increment() {
+                this.counter++
+            },
+            decrement() {
+                this.counter--
+            }
+
+        }
+    })
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+    })
+</script>
+
+</body>
+</html>

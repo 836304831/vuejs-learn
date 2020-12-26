@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+ <div id="app">
+     <cpn v-bind:cmovies="movies" :cmsg="msg"></cpn>
+</div>
+
+ <template id="cpn">
+     <div>
+         <h2>{{cmsg}}</h2>
+         <ul>
+             <li v-for="item in cmovies"> {{item}}</li>
+         </ul>
+     </div>
+ </template>
+
+<script src="../js/vue.js"></script>
+<script>
+    // 父组件向子组件传送数据，通过props属性传送
+    // 子组件向父父组件发送信息，通过自定义触发事件
+    const cpn = {
+        template:`#cpn`,
+        // props 支持多种类型
+        // prop使用方法1： prop为list
+        // props: ['cmovies', 'cmsg'],
+
+        // props使用方法2： props可以是对象类型，可以指定参数的类型
+        // props: {
+        //     'cmovies': Array,
+        //     'cmsg': Sring
+        // },
+        // props使用方法3：props可以是对象类型，这样就可以指定参数的类型，也可以指定默认值
+        props: {
+            // type支持的类型： String, Number, Boolean, Array, Object, Date, Function, Symbol
+            // 当自定义构造函数时，验证也支持自定义的类型
+            // cmsg: {String, Number},  // 支持属性的多种类型
+            cmsg: {
+                type: String,
+                default: 'aaaaaaaaa',
+                // 通过required设置是否可以缺省
+                required: true
+            },
+
+            // 若类型是对象或数组，默认值必须是一个函数
+            cmovies:{
+                type: Array,
+                default() {
+                    return []
+                }
+                // 下面是错误用法
+                // default: []
+            },
+
+            // 自定义属性类型验证
+            propA: {
+                validate(value) {
+                    return ['success', 'warning', 'danger'].indexOf(value) != -1
+                }
+            }
+            // 若只需要指定类型，也可以和指定默认值的方式混用
+            // 'cmovies': Array,
+        },
+        data() {
+            return {}
+        },
+        methods: {
+        }
+
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            // 不传该值，子组件会使用默认值
+            // msg: "hello",
+            movies: [
+                "星际穿越",
+                "大话西游",
+                "少年派",
+                "盗梦空间"
+            ]
+        },
+        components:{
+            cpn: cpn
+        }
+    })
+</script>
+
+</body>
+</html>

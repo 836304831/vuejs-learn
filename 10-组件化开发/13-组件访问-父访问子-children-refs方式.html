@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn ></cpn>
+
+    <!--  通过refs访问子组件内容,需要设置ref属性-->
+    <cpn ref="aaa"></cpn>
+    <button v-on:click="btnClick">按钮</button>
+    <h2>{{msg}}</h2>
+</div>
+<template id="cpn">
+    <div>
+        <h2>我是子模块</h2>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const cpn = {
+        template: "#cpn",
+        props: {
+            cmsg: {
+                type: String,
+                default: 'null'
+            }
+        },
+        data() {
+            return {
+                name: '我是子组件的name'
+            }
+        },
+        methods: {
+            showMsg() {
+                console.log('child component');
+            }
+        }
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello"
+        },
+        components: {
+            cpn: cpn
+        },
+        methods: {
+            btnClick() {
+                //访问子组件属性方法1: 通过$children调用子组件的相关函数和属性
+                console.log('通过chiren访问子组件');
+                // $children 是一个数组,包含所有子组件
+                console.log(this.$children[0].name)
+               this.$children[0].showMsg()
+
+
+                // 访问子组件属性方法2: 通过refs调用子组件的相关属性和函数,该方法用的多
+                console.log('通过refs访问子组件');
+                this.$refs.aaa.name
+                this.$refs.aaa.showMsg()
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
