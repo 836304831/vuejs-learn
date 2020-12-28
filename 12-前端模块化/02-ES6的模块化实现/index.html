@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 因为公用全局变量, 可能会被其他js文件修改,导致结果不是自己想要的
+    可以调整引入bbb.js和mmm.js的顺序查看不同的结果
+    -->
+
+<!-- 引入是加入type属性,会以module为作用域,其他module无法使用其他当前module的变量和函数 -->
+<script src="aaa.js" type="module" ></script>
+<script src="bbb.js" type="module"> </script>
+<script src="mmm.js" type="module"> </script>
+
+
+
+</body>
+</html>

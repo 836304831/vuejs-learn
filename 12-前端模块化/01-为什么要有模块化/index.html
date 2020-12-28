@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 因为公用全局变量, 可能会被其他js文件修改,导致结果不是自己想要的
+    可以调整引入bbb.js和mmm.js的顺序查看不同的结果
+    -->
+<script src="main.js"></script>
+<script src="aaa.js" ></script>
+<script src="bbb.js"> </script>
+<script src="mmm.js"> </script>
+
+
+
+</body>
+</html>
