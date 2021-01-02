@@ -1,4 +1,4 @@
-
+vue的安装和模块化使用
 1. 添加版权说明
     1.1 在webpack.config.js中添加webpack
         const webpack = require('webpack')

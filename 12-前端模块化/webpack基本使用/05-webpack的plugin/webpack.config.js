@@ -2,6 +2,8 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     mode: 'development',
@@ -10,11 +12,16 @@ module.exports = {
         // path需要时绝对路径
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: 'dist/'
+        // publicPath: 'dist/'
     },
     plugins: [
         new VueLoaderPlugin(),
-        new webpack.BannerPlugin('最终版权归acedar所有')
+        new webpack.BannerPlugin('最终版权归acedar所有'),
+        new HtmlWebpackPlugin({
+            template: 'index.html'
+        }),
+        new UglifyjsPlugin()
+
     ],
     module: {
         rules: [
@@ -73,5 +80,11 @@ module.exports = {
             "vue$": 'vue/dist/vue.esm.js'
         },
         extensions: ['.js', '.css', '.vue']
+    },
+    devServer: {
+        // 指定为哪个文件夹提供本地服务
+        contentBase: './dist',
+        // 指定实时监听
+        inline: true
     }
 }

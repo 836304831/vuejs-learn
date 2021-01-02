@@ -1,0 +1,49 @@
+
+1. 添加版权说明
+    1.1 在webpack.config.js中添加webpack
+        const webpack = require('webpack')
+        plugins: [
+            new webpack.BannerPlugin('最终版权归acedar所有')
+        ],
+
+2. 使用html-webpack-plugin将index.html打包到dist文件中
+    2.1 npm install html-webpack-plugin --save-dev
+    2.2 在webpack.config.jsz中，引入html-webpack-plugin，并在plugins中使用
+        const HtmlWebpackPlugin = require('html-webpack-plugin')
+        plugins: [
+            // 根据index.html生成html，不指定index.html会默认生成一个非预期的（生成的index.html在dist下）
+            new HtmlWebpackPlugin({
+                template: 'index.html'
+            })
+        ],
+    2.2 注释掉webpack.config.js中配置的publicPath，否则自动在dist生成的index.html引入js文件路径不对
+        output: {
+            publicPath: 'dist/'
+        }
+    2.3 npm run build
+    2.4 打开dist/index.html
+
+3. 使用uglifyjs-webpack-plugin压缩打包到dist的文件（开发阶段不需要添加该选项，否则不好在web上定位问题）
+    3.1 npm install uglifyjs-webpack-plugin --save-dev
+    3.2 在webpack.config.jsz中，引入uglifyjs-webpack-plugin，并在plugins中使用
+        const uglifyjsPlugin = require('uglifyjs-webpack-plugin')
+        plugins: [
+            new uglifyjsPlugin()
+        ]
+
+4. 搭建本地服务器
+    4.1 安装webpack-dev-server
+        npm install webpack-dev-server --save-dev
+    4.2 配置webpack.config.js的devServer选项
+        devServer: {
+                // 指定为哪个文件夹提供本地服务
+                contentBase: './dist',
+                // 指定实时监听
+                inline: true
+            }
+    4.3 在package.json的script配置配置dev对应的脚本
+        // 加上--open参数，可以自动打开网页
+        scripts": {
+            "dev": "webpack-dev-server --open"
+          }
+    4.4 npm run dev   // dev与脚本名对应
