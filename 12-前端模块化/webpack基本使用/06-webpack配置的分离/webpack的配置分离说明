@@ -1,0 +1,37 @@
+
+1. 将webpack.config.js文件分离
+    1.1 创建build文件夹
+    1.2 将webpack.config.js中开发环境和生产环境都要用到的均保存在base.config.js中
+    1.3 将开发环境要用的保存在dev.config.js中
+    1.4 将生产环境要用到的保存在prod.config.js中
+
+2. 安装webpack-merge
+    2.1 npm install webpack-merge --save-dev
+    2.2 分别修改dev.config.js和prod.config.js，在该文件中需要合并base.config.js, dev.config.js内容如下：
+        const webpackMerge = require('webpack-merge')
+        const baseConfig = require('./base.config')
+
+        module.exports = webpackMerge(baseConfig,  {
+            devServer: {
+                // 指定为哪个文件夹提供本地服务
+                contentBase: './dist',
+                // 指定实时监听
+                inline: true
+            }
+        })
+    2.3 删除webpack.config.js， 配置package.json
+        删除当前目录的webpack.config.js
+        在package.json的build脚本中加上配置文件所在的路径
+            "build": "webpack --config ./build/prod.config.js",
+            "dev": "webpack-dev-server --open --config ./build/dev.config.js"
+    2.4 重新打包后文件所在的路径（不重新配置会打包到build/dist下）
+        修改base.config.js中output的path配置
+            output: {
+                    // path需要时绝对路径， 将原来的./dist改为../dist
+                    path: path.resolve(__dirname, '../dist'),
+                    filename: 'bundle.js',
+                },
+
+    2.5 run
+        npm run build
+        npm run dev
