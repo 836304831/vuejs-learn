@@ -1,0 +1,16 @@
+
+vue-cli依赖node和webpack
+
+1. 安装脚手架3 vue-cli3
+    npm install -g @vue/cli
+
+2. 兼容脚手架vue-cli2
+    npm install @vue/cli-init -g
+
+3. 脚手架2 vue-cli2初始化项目
+    // 需要选择配置内容
+    vue init webpack my-project  //见vuecli2test-1
+
+
+4. 脚手架3 vue-cli3初始化项目
+    vue create my-project
