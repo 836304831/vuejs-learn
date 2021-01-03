@@ -1,0 +1,11 @@
+
+1. vue-cli3与vue-cli2的区别
+    1.1 vue-cli3是基于webpack4打造的， vue-cli2还是针对webpack3的
+    1.2 vue-cli3的设计原则是0配置，移除根目录下的配置文件：build和config。
+    1.3 vue-cli3提供了vue ui命令，提供了可视化配置，更加人性化
+    1.4 移除了static文件夹，新增加public文件夹，并且index.html移到public中
+
+2. vue cli3的配置存放位置
+    2.1 使用vue ui管理项目配置
+        终端输入： vue ui
+        导入创建的项目即可查看项目的配置，也可以安装依赖

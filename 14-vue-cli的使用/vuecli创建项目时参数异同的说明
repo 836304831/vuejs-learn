@@ -1,0 +1,45 @@
+
+1. eslint使用说明
+    会严格检查格式的标准，不满足格式标准就会报错，比如函数和参数之间需要空格，定义的函数必须调用，代码末尾不能加分号
+    关闭方法：在config/index.js中useEslint的值改为false
+         dev: {
+            // Use Eslint Loader?
+            useEslint: false,
+         }
+
+2. runtimeCompile vs runtimeonly
+    2.1 性能不同（main.js不同）
+        runtimecompile:
+            // template -> ast -> render -> vdom -> UI
+            new Vue({
+              el: '#app',
+              components: { App },
+              template: '<App/>'
+            })
+
+        runtimeonly(性能高， 代码量少):
+            // render -> vdom -> UI
+            new Vue({
+              el: '#app',
+              render: h => h(App)
+            })
+            vue文件中的template由vue-template-compile解析成render函数
+        可以将runtimecompile的Vue改成runtimeonly的写法:
+            new Vue({
+              el: '#app',
+              // components: { App },
+              // template: '<App/>',
+
+              // 使用render改写
+              // 用法1. createElement(’标签‘, {标签属性}， [])
+              render (createElement, context) {
+                return createElement('h2', {class: 'box'}, ['hello vue'])
+                }
+              })
+            // 用法2
+            new Vue({
+              el: '#app',
+              render (createElement, context) {
+                return createElement(App)
+              }
+            })
