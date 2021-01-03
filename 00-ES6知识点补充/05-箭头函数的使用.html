@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 箭头函数：也是一种定义函数的方式
+    // 1. 定义函数的方式： function
+    const aa = function () {
+
+    }
+    // 2. 对象字面量中定义函数
+    const obj = {
+        bbb() {
+
+        }
+    }
+
+    // 3. ES6中箭头函数
+    // const ccc = (参数列表) => {
+    // }
+
+    // 3.1 无参数函数
+    const ccc = () => {
+    }
+
+    // 3.2 放入两个参数
+    const sum = (num1, num2) => {
+        return num1 + num2
+    }
+
+    // 3.3 放入一个参数
+    const power = num => {
+        return num*num
+    }
+
+    // 4. ES6 函数体中的写法
+    // 4.1 函数体中有多行代码写法
+    const test = () => {
+        console.log('hello vue');
+        console.log('hello world');
+    }
+
+    // 4.2 函数提中只有一行代码时，可简写
+    const mul = (num1, num2) => num1 * num2
+    console.log(mul(20, 30))
+</script>
+</body>
+</html>
