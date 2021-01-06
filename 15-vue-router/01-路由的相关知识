@@ -1,0 +1,78 @@
+1. 前后端的发展
+    前后混合早期：前端代码和后端代码均在后端渲染，前端不做任何逻辑处理，只负责展示：缺点，逻辑混乱
+    前后端分离中期：前端负责从静态服务器获取html+css+js代码，后端提供api接口，数据的请求由js发起。缺点：每个url需要请求一个静态服务器（路由）
+    前端路由现在（单页面富应用）：前端一次从静态服务器中获取所有的html+css+js，不同的url会现在i前端进行路由，通过组件渲染成不同的页面。然后通过js请求后端服务器数据
+
+2. vue-router作用
+    vue-router是Vue.js官方的路由插件，和vue.js深度集成，适合否见单页面应用。
+    路由用于设定访问路由，将路径和组件映射起来
+    在vue-router的单页面应用中，页面的路径的改变就是组件的切换
+
+3. vue-router使用说明
+    3.1 安装
+        npm install vue-router --save
+
+    3.2 在src下创建router文件index.js， 内容如下:
+        import Vue from 'vue'
+        import VueRouter from 'vue-router'
+        // 1. 创建Vue.use(插件)，安装插件
+        Vue.use(VueRouter)
+        // 2. 创建Vuerouter对象
+        const routers = [
+        ]
+        const router = new VueRouter({
+          // 配置路由和组件之间的对应关系
+          routers
+        })
+        // 3. 将router对象传入到Vue实例
+        export default router
+        // 4. 在main.js中导入
+
+    3.3 在main.js中引入， 如下
+        import router from './router/index.js'
+
+        Vue.config.productionTip = false
+
+        /* eslint-disable no-new */
+        new Vue({
+          el: '#app',
+          // 导入路由
+          router,
+          render: h => h(App)
+        })
+
+4. 使用vue-router开发自己的功能
+    4.1 按第3步搭好框架
+    4.2 在src/components下创建自己的vue文件，比如Home和About文件
+    4.3 在src/index.js添加Home和About的组件到router中，如下：
+        const routers = [
+          {
+            path: '/home',
+            component: Home
+          }, {
+            path: '/about',
+            component: About
+          }
+        ]
+    4.4 在src/App.vue中添加router-link标签，与Home.vue和about.vue组件关联； router-view指定组件显示的位置，如下：
+        <template>
+          <div id="app">
+            <router-link to="/home">首页</router-link>
+            <router-link to="/about">关于</router-link>
+            <img src="./assets/logo.png">
+            <router-view> </router-view>
+          </div>
+        </template>
+    4.5 设置默认页面，使用redirect重定向，修改index.js的router内容，如下：
+        const routers = [
+          {
+            path: '',
+            redirect: '/home'
+          }]
+    4.6 去掉url中的#号（不适用hash模式），只需配置index.js中router下的mode配置为history
+        const router = new VueRouter({
+          // 配置路由和组件之间的对应关系, 是routes， routes，routes， 不是routers
+          routes,
+          mode: 'history'
+        })
+

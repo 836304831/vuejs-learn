@@ -1,0 +1,49 @@
+
+1. 通过tag属性改变样式
+    <router-link to="/home" tag=‘button'>首页</router-link>
+    <router-link to="/home" tag=‘li'>首页</router-link>
+
+2. replace属性，不会访问网页使用replaceState（默认是pushState）
+    <router-link to="/home" tag=‘button' replace>首页</router-link>
+    <router-link to="/home" tag=‘li' replace>首页</router-link>
+
+3. router-link选中时，默认添加router-link-active类，可以通过该类修改样式， 在App.vue的style中修改
+
+4. 可以将router-link-active进行重命名
+    4.1 在router-link中修改 active-class
+        <router-link to="/helloworld" tag="button" replace active-class='active' hello</router-link>
+    4.2 在src/index.js路由中统一修改
+        const router = new VueRouter({
+          linkActiveClass: 'active'
+        })
+
+5. 也通过button a标签等实现router-link的功能
+    5.1 添加标签，并添加监听事件，App.vue
+        <template>
+          <div id="app">
+            <h2>我是真的首页</h2>
+            <!--   3. 使用button+click实现实现router-link的功能 -->
+            <button v-on:click="homeClick">首页</button>
+            <button v-on:click="aboutClick">关于</button>
+          </div>
+        </template>
+    5.2 在脚本中实现对应的事件处理方法
+        export default {
+          name: 'App',
+          methods: {
+            homeClick() {
+              // 相当于history.pushState
+              this.$router.push('/home')
+              // 相当于history.replace
+              // this.$router.replace('/home')
+              console.log("homeClick");
+            },
+            aboutClick() {
+              // 相当于history.pushState
+              // this.$router.push("/about")
+              // 相当于history.replace
+              this.$router.replace('/about')
+            }
+          }
+        }
+    5.3 通过this.$router.push 和 this.$router.repace实现页面跳转（见5.2）
