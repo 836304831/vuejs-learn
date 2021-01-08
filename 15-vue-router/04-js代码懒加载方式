@@ -1,0 +1,6 @@
+
+// vue-router-2
+1. 在src/router/index.js修改引入组件的方式
+    // 懒加载方式
+    const HelloWorld = () => import('../components/HelloWorld')
+    const User = () => import('../components/User')

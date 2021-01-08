@@ -1,0 +1,51 @@
+
+// vue-router-2
+1. 修改src/router/index.js修改动态路由映射
+
+    export default new Router({
+      routes: [
+        {
+        // 动态参数userId
+          path: '/user/:userId',
+          name: 'user',
+          component: User
+        }
+      ]
+    })
+
+
+2. 在App.vue中配置userId参数
+    export default {
+      name: 'App',
+      data() {
+        return {
+          userId: 'acedar'
+        }
+      }
+    }
+
+3. 在App.vue中使用v-bind将同属性改成动态绑定变量
+    <template>
+      <div id="app">
+        <router-link to="/helloworld">helloworld</router-link>
+        // 动态绑定userId变量
+        <router-link v-bind:to="'/user/'+userId">用户</router-link>
+        <router-view/>
+      </div>
+    </template>
+
+4. 在src/components/User.vue中使用computed属性，并结合this.$route.params.userId 动态获取当前路由的参数
+    export default {
+    name: "User",
+      computed: {
+        userId() {
+          return this.$route.params.userId
+        }
+      }
+    }
+    或直接使用$route.params.userId直接获取参数
+        <template>
+          <div>
+            <h4>{{$route.params.userId}}</h4>
+          </div>
+        </template>

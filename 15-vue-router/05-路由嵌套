@@ -1,0 +1,45 @@
+
+// vue-router-2
+
+1. 创建对应的子组件
+    创建HomeNews和HomeMsg组件， 见src/components/HomeNews.vue和HomeMsg.vue
+
+2. 在路由映射中配置对应的子路由
+    在src/router/index为组件配置子组件
+
+export default new Router({
+    // 通过children属性配置子组件
+  routes: [
+    {
+      path: '/home',
+      component: Home,
+      children: [
+        {
+          path: '',
+          redirect: 'news'
+        },
+        {
+          path: 'news',
+          component: HomeNews,
+        },
+        {
+          path: 'msg',
+          component: HomeMsg,
+        }
+      ]
+    }
+})
+
+3. 在组件内部使用<router-link>标签
+    在Home.vue组件中使用router-link标签引用子组件
+        <template>
+          <div>
+            <router-link to="/home/news">新闻</router-link>
+            <router-link to="/home/msg">消息</router-link>
+            <router-view></router-view>
+          </div>
+        </template>
+
+4. 运行&打包
+    npm run dev
+    npm run build

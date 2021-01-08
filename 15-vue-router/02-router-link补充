@@ -1,4 +1,5 @@
 
+// vue-router-1
 1. 通过tag属性改变样式
     <router-link to="/home" tag=‘button'>首页</router-link>
     <router-link to="/home" tag=‘li'>首页</router-link>
