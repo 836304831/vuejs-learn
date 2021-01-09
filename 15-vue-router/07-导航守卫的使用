@@ -1,5 +1,5 @@
 
-// 03-导航守卫的使用
+// 03-导航守卫的使用/vue-router-2
 定义: 监控页面组件的跳转
 需求: 页面组件跳转,改变title的内容
 
@@ -35,3 +35,37 @@
       // 必须调用next,否则不会跳转
       next()
     })
+
+
+3. 配置后置守卫
+    // 在src/router/index.js中配置afterEach
+    // 后置钩子(hook)
+    router.afterEach((to, from) => {
+
+      // 第一个页面title出现undefine问题
+      // document.title = to.meta.title
+
+      // 保证每个页面都正常显示title
+      // document.title = to.matched[0].meta.title
+      console.log('afterEach');
+    })
+
+
+**********  路由独享 ********
+3. 在src/router/index.js的routes中增加beforEnter元素
+
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/helloworld',
+          name: 'HelloWorld',
+          component: HelloWorld,
+          meta: {
+            title: 'helloworld'
+          },
+          // 增加路由独享守卫
+          beforeEnter: () => {
+            console.log('beforenter helloword');
+          }
+        },
+

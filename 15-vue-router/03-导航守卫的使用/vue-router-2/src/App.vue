@@ -15,7 +15,10 @@
     <button v-on:click="userClick">用户</button>
     <button v-on:click="profileClick">查看profile</button>
 
-    <router-view/>
+    <keep-alive exclude="Profile,User">
+      <router-view/>
+    </keep-alive>
+
   </div>
 </template>
 

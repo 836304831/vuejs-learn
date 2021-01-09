@@ -24,6 +24,10 @@ const router = new VueRouter({
       component: HelloWorld,
       meta: {
         title: 'helloworld'
+      },
+      beforEnter: (to, from, next) => {
+        console.log('beforenter helloword');
+        next()
       }
     },
     {
@@ -32,6 +36,10 @@ const router = new VueRouter({
       component: User,
       meta: {
         title: '用户'
+      },
+      beforeEnter: (to, from, next) => {
+        console.log('beforenter user');
+        next()
       }
     },
     {
@@ -39,6 +47,10 @@ const router = new VueRouter({
       component: Home,
       meta: {
         title: '首页'
+      },
+      beforeEnter: (to, from, next) => {
+        console.log('beforenter home');
+        next()
       },
       children: [
         {
@@ -60,29 +72,54 @@ const router = new VueRouter({
       component: About,
       meta: {
         title: '关于'
-      }
+      },
+      beforeEnter: (to, from, next) => {
+        console.log('beforenter about');
+        next()
+      },
     },
     {
       path: '/profile',
       component: Profile,
       meta: {
         title: '档案'
+      },
+      beforeEnter: (to, from, next) => {
+        console.log('beforenter profile');
+        next()
       }
     }
   ],
   mode: 'history'
 })
 
+// **********  全局守卫 ******************
+// 前置钩子(hook)
 router.beforeEach((to, from, next) => {
 
   // 第一个页面title出现undefine问题
   // document.title = to.meta.title
 
   // 保证每个页面都正常显示title
+  console.log(to.matched[0].meta.title);
   document.title = to.matched[0].meta.title
+  console.log('beforeEach');
 
   // 必须调用next,否则不会跳转
   next()
+})
+
+
+// **********  全局守卫 ******************
+// 后置钩子(hook)
+router.afterEach((to, from) => {
+
+  // 第一个页面title出现undefine问题
+  // document.title = to.meta.title
+
+  // 保证每个页面都正常显示title
+  // document.title = to.matched[0].meta.title
+  console.log('afterEach');
 })
 
 export default router

@@ -1,0 +1,44 @@
+
+
+使用route-link的组件,每次页面切换会重新创建组件,使用keep-alive可以避免页面切换的组件重建
+
+
+1. 缓存组件修改App.vue
+    <template>
+      <div id="app">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
+      </div>
+    </template>
+
+2. 指定部分路由不缓存
+    2.1 通过created和destroyed元素添加log信息,以便查看是否真的执行
+        export default {
+          name: "About",
+          created() {
+            console.log('About created');
+          },
+          destroyed() {
+            console.log('About destroyed');
+          },
+        }
+    2.2 About和Profile不缓存, 通过exclue属性指定不缓存的组件名(不能加空格)
+        <keep-alive exclude="Profile,User">
+          <router-view/>
+        </keep-alive>
+
+************  扩展 **********************
+3. 记录上一步的路由
+    修改src/components/Home.vue, 记录上一步访问组件的url(避免嵌套路由跳转结果步准确)
+        export default {
+          name: "Home",
+          // activated 和deactivated 只有在使用了keep-alive时才生效
+          activated() {
+            this.$router.push(this.path)
+          },
+          beforeRouteLeave(to, from, next) {
+            this.path = this.$route.path
+            next()
+          }
+        }

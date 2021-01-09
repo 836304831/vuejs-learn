@@ -10,7 +10,13 @@
 
 <script>
 export default {
-name: "User",
+  name: "User",
+  created() {
+    console.log('User created');
+  },
+  destroyed() {
+    console.log('User destroyed');
+  },
   computed: {
     userId() {
       return this.$route.params.userId
