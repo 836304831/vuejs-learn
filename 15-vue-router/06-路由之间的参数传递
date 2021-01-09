@@ -1,0 +1,41 @@
+
+// vue-router-2
+1. 组件开发将src/components/Profile.vue
+2. 组件注册见src/router/index.js
+    export default new Router({
+      routes: [
+        {
+          path: '/profile',
+          component: Profile
+        }
+      ]
+    })
+
+3. 通过router-link使用对象传递参数（App.vue）
+    <template>
+        <router-link v-bind:to="{path: '/profile', query: {name: 'acedar', age: 18, height: 188}}">profile</router-link>
+        <router-view/>
+      </div>
+    </template>
+
+4. 通过button传递参数
+    4.1 在App.vue中定义button和事件函数
+        <button v-on:click="userClick">用户</button>
+        <button v-on:click="profileClick">查看profile</button>
+    4.2 在App.vue的js中实现事件函数
+        methods: {
+            userClick() {
+              this.$router.push('/user/' + this.userId)
+            },
+            profileClick() {
+              // 传递对象
+              this.$router.push({
+                path: '/profile',
+                query: {
+                  name: 'acedar',
+                  age: 18,
+                  height: 188
+                }
+              })
+            }
+          }

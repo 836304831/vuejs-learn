@@ -1,0 +1,37 @@
+
+// 03-导航守卫的使用
+定义: 监控页面组件的跳转
+需求: 页面组件跳转,改变title的内容
+
+1. 修改src/router.index.js中routes, 为没有组件添加meta属性,并设置title的值
+    routes: [
+        {
+          path: '/helloworld',
+          name: 'HelloWorld',
+          component: HelloWorld,
+          meta: {
+            title: 'helloworld'
+          }
+        },
+        {
+          path: '/user/:userId',
+          name: 'user',
+          component: User,
+          meta: {
+            title: '用户'
+          }
+        }
+    ]
+
+2. 在src/router/index.js导出router之前调用beforeEach函数,并实现设置title的功能
+    router.beforeEach((to, from, next) => {
+
+      // 第一个页面title出现undefine问题
+      // document.title = to.meta.title
+
+      // 保证每个页面都正常显示title
+      document.title = to.matched[0].meta.title
+
+      // 必须调用next,否则不会跳转
+      next()
+    })
