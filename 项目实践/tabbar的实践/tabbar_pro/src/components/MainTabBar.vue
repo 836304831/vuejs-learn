@@ -1,9 +1,9 @@
 <template>
   <tab-bar>
     <tab-bar-item path="/home" activeColor="pink">
-      <img slot="item-icon" src="../assets/imgs/tabbar/zanshang-01.jpg" alt="">
+      <img slot="item-icon" src="~assets/imgs/tabbar/zanshang-01.jpg" alt="">
 
-      <img slot="item-icon-active" src="../assets/imgs/tabbar/zanshang-01.jpg" alt="">
+      <img slot="item-icon-active" src="~assets/imgs/tabbar/zanshang-01.jpg" alt="">
       name="item-icon-active"
       <div slot="item-text">首页</div>
     </tab-bar-item>
