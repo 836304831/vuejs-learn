@@ -1,0 +1,8 @@
+
+tabbar项目实践: tabbar_pro
+
+需求: 实现tabbar,支持自动修改点击颜色, 监控当前使用的组件
+
+实现:
+    1. 实现的components/tabbar/TabBar.vue和TabBarItem为通用组件,可在其他项目中不做任何修改的使用.
+    2. 新项目对接入口为 components/MainTabBar.vue
