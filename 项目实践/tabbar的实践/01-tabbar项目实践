@@ -1,8 +1,29 @@
 
 tabbar项目实践: tabbar_pro
 
-需求: 实现tabbar,支持自动修改点击颜色, 监控当前使用的组件
+1. 需求: 实现tabbar,支持自动修改点击颜色, 监控当前使用的组件
 
-实现:
+2. 实现:
     1. 实现的components/tabbar/TabBar.vue和TabBarItem为通用组件,可在其他项目中不做任何修改的使用.
     2. 新项目对接入口为 components/MainTabBar.vue
+
+3. 资源文件(图片)引入路径比较麻烦的问题解决
+    3.1 资源文件路径别名,修改src/build/webpack.base.config.js文件
+        修改assets, components, views的别名
+        resolve: {
+            extensions: ['.js', '.vue', '.json'],
+            alias: {
+              '@': resolve('src'),
+              'assets': resolve('src/assets'),
+              'components': resolve('src/components'),
+              'views': resolve('src/views')
+            }
+          },
+
+        使用别名前(src/components/MainTabBar.vue):
+            <img slot="item-icon" src="../assets/imgs/tabbar/huluwa-01.jpg" alt="">
+            import TabBar from "./tabbar/TabBar";
+        使用别名后:
+            // 非import使用资源路径时,前面需要加上"~"符号
+            <img slot="item-icon" src="~assets/imgs/tabbar/huluwa-01.jpg" alt="">
+            import TabBar from "components/tabbar/TabBar";
