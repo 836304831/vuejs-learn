@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // then传入两个函数
+    new Promise((resolve, reject) => {
+        // 第一次网络请求的代码
+        setTimeout(() => {
+            // 成功时调用resolver
+            resolve('hello world')
+
+            // 失败时调用reject
+            // reject('error msg')   // 转到catch执行
+
+        }, 1000)
+    }).then((hello_str) => {
+        // then 可以传入两个函数, 第一个函数在调用resolve时调用,第二个函数在调用reject调用,替代catch实现
+        // 第一次拿到结果的处理代码
+        console.log(hello_str);
+        console.log('hello world');
+        console.log('hello world');
+
+        new Promise((resolve,reject) => {
+            // 第二次网络请求的代码
+            setTimeout(() => {
+                resolve()
+            }, 1000)
+        }).then(() => {
+            // 第二次拿到结果的处理代码
+            console.log('hell vuejs')
+            console.log('hell vuejs')
+            console.log('hell vuejs')
+
+            new Promise((resolve, reject) => {
+                // 第三次网络请求的代码
+                setTimeout(() => {
+                    resolve()
+                }, 1000)
+            }).then(() => {
+                // 第三次拿到结果的处理代码
+                console.log('hello python')
+                console.log('hello python')
+                console.log('hello python')
+            })
+        })
+    }, (errMsg) => {
+        // then的第二个函数,调用reject的时调用
+        console.log(errMsg);
+    })
+
+</script>
+</body>
+</html>

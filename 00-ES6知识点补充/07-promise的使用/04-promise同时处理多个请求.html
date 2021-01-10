@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    // ***********  传统同时处理两个请求的实现 ***************
+    /*
+    let isResult1 = false
+    let isResult2 = false
+    // 请求1
+    $ajax({
+        url: '',
+        success: function () {
+            console.log('结果1')
+            isResult1 = true
+            handleResult()
+        }
+    })
+    // 请求2
+    $ajax({
+        url: '',
+        success: function () {
+            console.log('结果2')
+            isResult2 = true
+            handleResult()
+        }
+    })
+    function handleResult() {
+        if (isResult1 && isResult2) {
+            console.log('两个结果均收到');
+        }
+    }
+    */
+
+    // **********  使用promise使用多个请求的处理
+    Promise.all([
+        /*
+        // 没有实现url, 暂时使用setTimeout替代测试
+        new Promise((resolve, reject) => {
+            $ajax({
+                url: 'url1',
+                success: function (data) {
+                    console.log('结果1')
+                    resolve(data)
+                }
+            })
+        }),
+        new Promise((resolve, reject) => {
+            $ajax({
+                url: 'url2',
+                success: function (data) {
+                    console.log('结果2')
+                    resolve(data)
+                }
+            })
+        }),
+         */
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({name: 'acedar', age: 18})
+            }, 2000)
+        }),
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({name: 'acedar1', age: 20})
+            }, 4000)
+        }),
+    ]).then((results) => {
+        // results[0] 表示第一个请求的结果
+        // results[1] 表示第二个网络请求的结果
+        console.log(results);
+    })
+</script>
+</body>
+</html>

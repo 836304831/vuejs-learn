@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1. 使用setTimeout
+    setTimeout(() => {
+        console.log('hello world');
+        setTimeout(() => {
+            console.log('hello vuejs');
+        }, 1000)
+    }, 1000)
+
+    // 参数 -> 函数(resolve, reject)
+    // resolve, reject本身又是函数
+    // new -> 构造函数(1. 保存状态信息, 2. 执行传入的函数)
+    // 在执行传入的回调函数时,会传入两个参数,resolve和reject
+    new Promise((resolve, reject) => {
+        // 第一次网络请求的代码
+        setTimeout(() => {
+            // 成功时调用resolver
+            resolve('hello world')
+
+            // 失败时调用reject
+            // reject('error msg')   // 转到catch执行
+
+            }, 1000)
+    }).then((hello_str) => {
+        // 第一次拿到结果的处理代码
+        console.log(hello_str);
+        console.log('hello world');
+        console.log('hello world');
+
+        new Promise((resolve,reject) => {
+            // 第二次网络请求的代码
+            setTimeout(() => {
+                resolve()
+            }, 1000)
+        }).then(() => {
+            // 第二次拿到结果的处理代码
+            console.log('hell vuejs')
+            console.log('hell vuejs')
+            console.log('hell vuejs')
+
+            new Promise((resolve, reject) => {
+                // 第三次网络请求的代码
+                setTimeout(() => {
+                    resolve()
+                }, 1000)
+            }).then(() => {
+                // 第三次拿到结果的处理代码
+                console.log('hello python')
+                console.log('hello python')
+                console.log('hello python')
+            })
+        })
+    }).catch((errMsg) => {
+        console.log(errMsg);
+    })
+
+</script>
+</body>
+</html>

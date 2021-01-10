@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // wrapped into
+    // 写法1: 每次处理,new promise
+    // new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve('aaa')
+    //     }, 1000)
+    // }).then((res) => {
+    //     // 1. 处理结果
+    //     console.log(res, '第一层的逻辑处理');
+    //
+    //     // 2. 对结果进行第一次处理
+    //     return new Promise((resolve => {
+    //         resolve(res + 'bbb')
+    //     })).then((res) => {
+    //         console.log(res, '第二层的逻辑处理');
+    //
+    //         return new Promise((resolve => {
+    //             resolve(res + 'ccc')
+    //         })).then((res) => {
+    //             console.log(res, '第三层的逻辑处理');
+    //         })
+    //     })
+    // })
+
+    // 写法2: 使用promise.resolve代替new Promise
+    // new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve('aaa')
+    //     }, 1000)
+    // }).then((res) => {
+    //     // 1. 处理结果
+    //     console.log(res, '第一层的逻辑处理');
+    //
+    //     // 2. 对结果进行第一次处理
+    //     return Promise.resolve(res + 'bbb')
+    //     return Promise.reject(res + 'bbb')   // reject同样可以简写
+    // }).then((res) => {
+    //     console.log(res, '第二层的逻辑处理');
+    //     return Promise.resolve(res + 'ccc')
+    // }).then((res) => {
+    //     console.log(res, '第三层的逻辑处理');
+    // })
+
+    // 写法3: 省略promise.resolve, 直接return
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('aaa')
+        }, 1000)
+    }).then((res) => {
+        // 1. 处理结果
+        console.log(res, '第一层的逻辑处理');
+
+        // 2. 对结果进行第一次处理
+        return res + 'bbb'
+        // throw 'error msg'  // 异常时, 可以通过throw来代替reject
+    }).then((res) => {
+        console.log(res, '第二层的逻辑处理');
+        return res + 'ccc'
+    }).then((res) => {
+        console.log(res, '第三层的逻辑处理');
+    }).catch((err) => {
+        console.log(err);
+    })
+</script>
+</body>
+</html>
