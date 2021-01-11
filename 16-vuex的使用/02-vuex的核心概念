@@ -1,0 +1,126 @@
+
+vuex的核心概念
+
+1. State
+    1.1 在store/index.js添加state
+        const store = new Vuex.Store({
+          state: {
+            counter: 100
+          }
+        })
+    1.2 单一状态树（单一数据源）
+        只使用一个Vuex.Store()对象管理所有的数据，不建议使用多个对象管理不同的数据
+
+2. Getters
+    2.1 类似组件中的computed计算属性, 适用于对某个属性做简单的计算， 如对counter进行平方计算
+    const store = new Vuex.Store({
+      state: {
+        counter: 1000
+      },
+      getters: {
+        powerCounter(state) {
+          return state.counter * state.counter
+        },
+        ageBigThan(state) {
+          return state.students.filter(s => s.age >=20)
+        },
+        // getter中调用getters
+        ageBigThanLen(state, getters) {
+          return getters.ageBigThan.length
+        },
+        // 传递参数的getters属性
+        ageBigThanAge(state) {
+          return function (age) {
+            return state.students.filter(s => s.age >=age)
+          }
+        },
+      }
+    2.2 使用
+         <h3> powerCounter值： {{$store.getters.powerCounter}} </h3>
+         <h2> getters计算年龄超过20的信息， 数量：{{$store.getters.ageBigThanLen}}  数据： {{$store.getters.ageBigThan}}</h2>
+         <h2> getter计算年龄超过指定参数的数据： {{$store.getters.ageBigThanAge(22)}}</h2>
+
+3. Mutation
+    vuex的store状态更新的唯一方式：提交mutation， mutation包括两部分：字符串的事件类型（type）和回调函数（handler），该回调啊含糊的额第一个参数时state
+    3.1 传递参数
+          mutations: {
+            increment(state) {
+              state.counter++
+            },
+            decrement(state) {
+              state.counter--
+            },
+            // 可以传递外部参数
+            incrementCount(state, count) {
+              state.counter += count
+            },
+            addStu(state, stu) {
+              state.students.push(stu)
+            }
+          },
+      更新调用：
+        this.$store.commit('increment')
+        this.$store.commit('incrementCount'， 5)  // 传递参数
+        const stu = {id: 130, name: 'ccc', age: 25}
+        this.$store.commit('addStu', stu)   // 传递对象
+
+    3.2 mutation提交风格
+        提交方法：
+          const stu = {id: 130, name: 'ccc', age: 25}
+          // 提交方法1
+          // this.$store.commit('addStu', stu)
+          // 提交方法2
+          this.$store.commit({
+            type: 'addStu',
+            stu: stu})
+        mutation处理方法：
+            addStu(state, stu) {
+              // 提交方法1获取的值为实际提交的参数
+              // this.$store.commit('addStu', stu)
+              // state.students.push(stu)
+
+              // 提交方法2
+              // this.$store.commit({
+              //   type: 'addStu',
+              //   stu: stu})
+              // 此时的参数为对象
+              state.students.push(stu.stu)
+            }
+    3.3 mutation响应规则
+        修改提前定义好的store中的数据，均会加如到响应式系统中，此时是实时响应的
+        如为students添加addr属性时，因为是新增属性，不会实时响应
+            updateStu(state) {
+               // 不会实时响应
+               state.students[0]['addr'] = 'xx'
+               // 删除属性同样不是实时响应
+               delete state.students.age
+            }
+        变成实时响应方法：
+             updateStu(state) {
+              // 实时响应
+              Vue.set(state.students[0], 'addr', 'xx')
+              // 删除后实时响应
+              Vue.delete(state.students, 'age')
+            }
+
+    3.4 类型常量
+        定义类型常量可以保证在使用时不会出错， mutations-types.js定义常量
+            export const INCREMENT = 'increment'
+        store/index.js使用常量定义类型：
+            import {INCREMENT} from './mutations-types'
+            mutations: {
+                // 通过定义类型常量来使用， 推荐使用该方式
+                [INCREMENT](state) {
+                  state.counter++
+                },
+            }
+        提交时也使用常量:
+            import {INCREMENT} from './store/mutations-types'
+            addition() {
+              this.$store.commit(INCREMENT)
+            },
+
+4. Action
+
+5. Module
+
