@@ -7,6 +7,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '',
+      name: 'HelloVuex',
+      component: HelloVuex
+    },
+    {
       path: '/hellovuex',
       name: 'HelloVuex',
       component: HelloVuex

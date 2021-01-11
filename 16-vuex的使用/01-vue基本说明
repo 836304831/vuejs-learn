@@ -1,4 +1,5 @@
 
+// vuex-pro-1
 vuex是一个专为vue.js应用程序开发的状态管理模式, 用于管理组件间的共享数据
 
 1. 安装vuex
@@ -40,3 +41,37 @@ vuex是一个专为vue.js应用程序开发的状态管理模式, 用于管理�
       render: h => h(App)
     })
 
+4. web中使用App.vue
+    <template>
+      <div id="app">
+        <h2>{{$store.state.counter}}</h2>
+        <button v-on:click="$store.state.counter++"> + </button>
+        <button v-on:click="$store.state.counter--"> - </button>
+        <router-link to="/hellovuex"></router-link>
+        <hello-vuex></hello-vuex>
+      </div>
+    </template>
+
+************  vuex 状态管理标准化 *****************
+使用 <button v-on:click="$store.state.counter++"> + </button> 直接修改会导致无法使用devtool跟踪哪个组件修改了共享状态。
+
+1. 在store/index.js中为每个状态添加mutation方法
+      // 使用mutations修改state中的值,可以通过devtool跟踪谁修改的
+      mutations: {
+        increment(state) {
+          state.counter++
+        },
+        decrement(state) {
+          state.counter--
+        }
+
+2. 在App.vue使用时，在methos的方法中使用
+    // 使用commit方法，通过参数指定调用的方法名
+    methods: {
+        addition() {
+          this.$store.commit('increment')
+        },
+        subtract() {
+          this.$store.commit('decrement')
+        }
+    }

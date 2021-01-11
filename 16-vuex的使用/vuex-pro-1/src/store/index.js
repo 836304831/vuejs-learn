@@ -11,6 +11,12 @@ const store = new Vuex.Store({
   },
   // 使用mutations修改state中的值,可以通过devtool跟踪谁修改的
   mutations: {
+    increment(state) {
+      state.counter++
+    },
+    decrement(state) {
+      state.counter--
+    }
 
   },
   // 异步请求时,使用action修改
