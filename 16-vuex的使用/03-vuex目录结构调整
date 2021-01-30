@@ -1,0 +1,30 @@
+
+vuex-pro-3
+规划整个前端的目录结构，并于管理
+整体而言，src的目录结构如下：
+
+|-- index.html
+|-- main.js
+|-- api
+    |-- 抽取出API请求
+|-- components
+    |-- App.vue
+    |-- ...
+|-- router
+    |-- index.js
+| -- store
+    |-- index.js         # 组装模块并导出store的地方
+    |-- actions.js       # 根级别的action方法定义
+    |-- mutations.js     # 根级别的mutations方法定义
+    |-- getters.js       # 跟级别的getters定义
+    |-- modules
+        |-- cart.js      # 购物车模块
+        |-- products.js  # 产品模块
+|-- assets
+    |-- imgs
+        |-- xx.jpg
+        |-- ...
+|-- static
+    |--   # 静态文件存放
+
+抽取后项目将vuex-pro-3/src
