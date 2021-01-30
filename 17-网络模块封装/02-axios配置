@@ -1,0 +1,32 @@
+
+在使用之前配置axios的默认配置
+
+1. 配置axios
+// ************* axios的全局配置 ****************** 
+import axios from 'axios'
+axios.defaults.baseURL = "http://httpbin.org"
+axios.defaults.timeout = 5000
+// ********* 使用时url，只需填写后面部分 *******
+    axios({
+    url: '/post',
+    method: 'post',
+    params: {
+    'page': 1,
+    'params1': 'params1' 
+    }
+    }).then(res => {
+    console.log(res)
+    }).catch(res => {
+    console.log('exception：' + res)
+    })
+
+2. 常用的配置选项
+    url
+    method
+    baseURL
+    transformReques: [function(data){}]
+    transformReponse:[function(data){}]
+    headers:{'x-request': 'xx'}
+    params: {}         # url中拼接参数
+    timeout: 5000   # 单位时毫秒
+    data: {key: 'aa'}   # body数据

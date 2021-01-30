@@ -1,0 +1,79 @@
+
+axios支持多种请求方式
+1. 安装axios
+    npm install axios --save
+
+2. 请求方式
+axios(config)
+axios.request(config)
+axios.get(url[, config])
+axios.delete(url[,config])
+axios.head(url[, config])
+axios.post(url[,data[,config]])
+axios.patch(url[,data[,config]])
+
+3. axios的基本使用， 见vue-pro-1/src/main.js
+    请求接口的测试可以使用httpbin.org，提供了各种接口测试
+
+    import axios from 'axios'
+    // 1. 默认请求
+    axios({
+    url: 'http://httpbin.org/get'
+    }).then(res => {
+    console.log(res)
+    }).catch(res => {
+    console.log('exception：' + res)
+    })
+
+    // 2. 指定method
+    axios({
+    url: 'http://httpbin.org/post',
+    method: 'post',
+    params: {
+    'page': 1,
+    'params1': 'params1' 
+    }
+    }).then(res => {
+    console.log(res)
+    }).catch(res => {
+    console.log('exception：' + res)
+    })
+
+4. axios的并发请求
+    // 1. axios发送并发请求
+    axios.all([
+    axios({
+        url: 'http://httpbin.org/get'
+    }),
+    axios({
+        url: 'http://httpbin.org/post',
+        method: 'post',
+        params: {
+        'page': 1,
+        'params1': 'params1' 
+        }
+    })
+    ]).then(results => {
+    console.log('并发请求结果')
+    console.log(results)
+    })
+
+    // -------- 多个结果展开，区别在then函数 -----------
+    // axios.all([
+    //   axios({
+    //     url: 'http://httpbin.org/get'
+    //   }),
+    //   axios({
+    //     url: 'http://httpbin.org/post',
+    //     method: 'post',
+    //     params: {
+    //      'page': 1,
+    //      'params1': 'params1' 
+    //     }
+    //   })
+    // ]).then(axios.spread((res1, res2) => {
+    //   console.log('并发请求结果-多个结果展开')
+    //   console.log(res1)
+    //   console.log(res2)
+    // }))
+
