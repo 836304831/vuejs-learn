@@ -1,0 +1,168 @@
+
+vue-pro-1
+
+// -------- 一. 创建对应的axios的实例 -----------
+
+使用场景：直接使用axios会使用全局配置，但有时使用的url或timeout设置与全局配置不一样时，可以创建实例单独配置
+
+1. 示例：
+    见src/mian_cp.js
+    // -------- 创建对应的axios的实例 -----------
+    // --- 使用场景：有时使用的url或timeout设置与全局配置不一样时，可以创建实例单独配置 ----
+
+    // 通过create方法创建实例
+    import axios from 'axios'
+    const instance = axios.create({
+    baseURL: 'http://httpbin.org',
+    timeout: 10000,
+    })
+
+    // 使用实例进行网络请求
+    instance({
+    url: '/get',
+    }).then(res => {
+    console.log('通过实例进行网络请求')
+    console.log(res)
+    }).catch(res => {
+    console.log('网络请求异常')
+    })
+
+    instance({
+    url: '/post',
+    method: 'post',
+    params: {
+        'page': 1,
+        'params1': 'params1' 
+    }
+    }).then(res => {
+    console.log('通过实例进行网络请求')
+    console.log(res)
+    })
+
+// -------- 二. 网络请求封装 -----------
+// 使用场景：当使用第三方组件时，第三方组件在多个组件中使用，当组件可能不在维护，那修改成本就会比较大，为此封装起来可以有效解决这个问题
+
+2.1 网络封装请求方式， 见network/request.js
+    import axios from 'axios'
+
+    // 实现方式1
+    export function request1(config, success, failure) {
+        // 1. 创建axios的实例
+        const instance = axios.create({
+            baseURL: 'http://httpbin.org',
+            timeout: 5000
+        })
+
+        // 发送网络请求
+        instance(config).then(res => {
+            console.log("正常处理")
+            success(res)
+        }).catch(err => {
+            console.log("异常处理")
+            failure(err)
+        })
+    }
+
+    // 实现方式2， 将回调函数放到config中
+    export function request2(config) {
+        // 1. 创建axios的实例
+        const instance = axios.create({
+            baseURL: 'http://httpbin.org',
+            timeout: 5000
+        })
+
+        // 发送网络请求
+        instance(config.baseConfig).then(res => {
+            console.log("正常处理")
+            config.success(res)
+        }).catch(err => {
+            console.log("异常处理")
+            cofnig.failure(err)
+        })
+    }
+
+    // 实现方式3， 将回调函数放到config中
+    export function request3(config) {
+        return new Promise((resolve, reject) => {
+            // 1. 创建axios的实例
+            const instance = axios.create({
+                baseURL: 'http://httpbin.org',
+                timeout: 5000
+            })
+
+            // 发送网络请求
+            instance(config).then(res => {
+                console.log("正常处理")
+                resolve(res)
+            }).catch(err => {
+                console.log("异常处理")
+                reject(err)
+            })
+        })
+    }
+
+    // 实现方式4， axios返回的就是promise对象
+    export function request4(config) {
+        // 1. 创建axios的实例
+        const instance = axios.create({
+            baseURL: 'http://httpbin.org',
+            timeout: 5000
+        })
+
+        // 发送网络请求
+        return instance(config)
+    }
+
+2.2 封装后的网络请求使用
+    见src/main.js
+
+    // ----------- 四. 封装request请求模块 ————————————————————————————
+    import {request1, request2, request3, request4} from  "./network/request"
+
+    // 网络请求方式1
+    request1({
+    url: '/get'
+    }, res => {
+    console.log('成功网络请求回调1')
+    console.log(res)
+    }, err => {
+    console.log('失败网络请求回调1')
+    console.log(err)
+    })
+
+    // 网络请求方式2
+    request2({
+    baseConfig: {
+        url: '/get'
+    },
+    success: res => {
+        console.log('成功网络请求回调2')
+        console.log(res)
+    },
+    failure: function (err) {
+        console.log('失败网络请求回调2')
+        console.log(err)
+    }
+    })
+
+    // 网络请求方式3
+    request3({
+    url: '/get'
+    }).then(res => {
+        console.log('成功网络请求回调3')
+        console.log(res)
+    }).catch(err => {
+        console.log('失败网络请求回调3')
+        console.log(err)
+    })
+
+    // 网络请求方式4, 强烈推荐方式
+    request4({
+    url: '/get'
+    }).then(res => {
+        console.log('成功网络请求回调4')
+        console.log(res)
+    }).catch(err => {
+        console.log('失败网络请求回调4')
+        console.log(err)
+    })

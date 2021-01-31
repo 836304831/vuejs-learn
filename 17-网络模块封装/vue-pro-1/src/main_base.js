@@ -80,7 +80,7 @@ axios.all([
 //   console.log(res2)
 // }))
 
-// -------- 三. 创建对应的axios的实例 -----------
+// -------- 创建对应的axios的实例 -----------
 // --- 使用场景：有时使用的url或timeout设置与全局配置不一样时，可以创建实例单独配置 ----
 
 // 通过create方法创建实例
@@ -109,56 +109,4 @@ instance({
 }).then(res => {
   console.log('通过实例进行网络请求')
   console.log(res)
-})
-
-
-// ----------- 四. 封装request请求模块 ————————————————————————————
-import {request1, request2, request3, request4} from  "./network/request"
-
-// 网络请求方式1
-request1({
-  url: '/get'
-}, res => {
-  console.log('成功网络请求回调1')
-  console.log(res)
-}, err => {
-  console.log('失败网络请求回调1')
-  console.log(err)
-})
-
-// 网络请求方式2
-request2({
-  baseConfig: {
-    url: '/get'
-  },
-  success: res => {
-    console.log('成功网络请求回调2')
-    console.log(res)
-  },
-  failure: function (err) {
-    console.log('失败网络请求回调2')
-    console.log(err)
-  }
-})
-
-// 网络请求方式3
-request3({
-  url: '/get'
-}).then(res => {
-    console.log('成功网络请求回调3')
-    console.log(res)
-}).catch(err => {
-    console.log('失败网络请求回调3')
-    console.log(err)
-})
-
-// 网络请求方式4, 强烈推荐方式
-request4({
-  url: '/get'
-}).then(res => {
-    console.log('成功网络请求回调4')
-    console.log(res)
-}).catch(err => {
-    console.log('失败网络请求回调4')
-    console.log(err)
 })
