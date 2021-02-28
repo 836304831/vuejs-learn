@@ -74,10 +74,16 @@
       // 1. 请求多个数据
       this.getHomeMulitdata()
 
-      // 请求商品数据
+      // 2. 请求商品数据
       this.getHomeGoods('pop')
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
+
+      // 3. 监听item图片完成
+      this.$bus.$on("itemImageLoad", () => {
+        console.log("itemImageLoad -------------")
+        this.$refs.scroll.refresh()
+      })
     },
     methods: {
       // 网络请求相关算法

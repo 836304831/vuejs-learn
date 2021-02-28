@@ -1,10 +1,13 @@
 <template>
   <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="">
+    <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
+<!--    <img :src="goodsItem.show.img" alt="" @load="imageLoad">-->
+    <img src="~assets/server/imgs/home/woman-4707542__340.jpg" alt="" @load="imageLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
       <span class="collect">{{goodsItem.cfav}}</span>
+      <span class="collect">{{goodsItem.show.img}}</span>
     </div>
   </div>
 </template>
@@ -18,6 +21,12 @@
         default() {
           return {}
         }
+      }
+    },
+    methods: {
+      imageLoad() {
+        console.log('imageLoad');
+        this.$bus.$emit("itemImageLoad")
       }
     }
   }

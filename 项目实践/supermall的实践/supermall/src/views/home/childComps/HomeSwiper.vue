@@ -2,8 +2,9 @@
   <swiper>
     <swiper-item v-for="item in banners">
       <a :href="item.link">
-        <img :src="item.image" alt="">
-        {{item.image}}
+        <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
+<!--        <img :src="item.image" alt="">-->
+        <img src="~assets/server/imgs/home/woman-4056684__340.webp" alt="">
       </a>
     </swiper-item>
   </swiper>
