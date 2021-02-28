@@ -63,6 +63,9 @@
         // 需要先判断scroll是否为空，为空时报错
         console.log('refresh --------- ')
         this.scroll && this.scroll.refresh()
+      },
+      finishPullingUp() {
+        this.scroll.finishPullUp()
       }
     }
   }

@@ -28,6 +28,7 @@
   import BackTop from "@/components/backTop/BackTop";
 
   import {getHomeMulitdata, getHomeGoods} from "@/network/home";
+  import {debounce} from "@/common/utils"
 
   export default {
     name: "Home",
@@ -89,7 +90,7 @@
       // })
 
       // 防抖动操作
-      const refresh = this.debounce(this.$refs.scroll.refresh, 500)
+      const refresh = debounce(this.$refs.scroll.refresh, 500)
       this.$bus.$on("itemImageLoad", () => {
         // 防抖动函数调用
         refresh()
@@ -148,6 +149,8 @@
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page += 1
 
+          // 完成上来加载更多刷新
+          this.$refs.scroll.finishPullingUp()
         })
       },
       getHomeGoodsDemo(type) {
@@ -257,18 +260,7 @@
       loadMore() {
         console.log("home上拉加载更多");
         this.getHomeGoods(this.currentType)
-        this.$refs.scroll.finishPullUp()
       },
-      debounce(func, delay) {
-        let timer = null
-        return function (...args) {
-          if (timer) clearTimeout(timer)
-
-          timer = setTimeout(() => {
-            func.apply(this, args)
-          }, delay)
-        }
-      }
 
     }
   }
