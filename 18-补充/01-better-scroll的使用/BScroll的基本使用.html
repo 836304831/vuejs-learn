@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .content {
+            height: 200px;
+            background-color: pink;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <!-- 监听按钮   -->
+<!--    <button class="btn"> 按钮</button>-->
+
+    <div class="content">
+        <ul>
+            <!-- 在BScroll中需要手动指定，才能监听点击事件     -->
+            <button class="btn"> 按钮</button>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+            <li>分类</li>
+        </ul>
+    </div>
+</div>
+<script src="./better-scroll.js">
+</script>
+
+<script>
+    // 默认情况下BSroll是不可以实时监听滚动位置， 必须指定createBScroll第二个参数
+
+    // probeType参数
+    // 0, 1 都是不政策实时的位置，0是系统默认值，1是手动默认值
+    // 2: 在手指滚动的过程中检测，手指离开后的关心滚动过程中不侦测
+    // 3： 只要是滚动都侦测
+    const bscrol = BetterScroll.createBScroll('.content', {
+        probeType: 3,
+        click: true,  // 监听内部点击事件
+        autoPullUpLoad: true  // 上拉加载更多
+    })
+    bscrol.on(
+        'scroll', (position) => {
+            // console.log(position);
+        }
+    )
+
+    // 监听上拉加载更多， 版本不一样，接口有所不同
+    bscrol.on(
+        'pullingUp', () => {
+            console.log('pullingUp。。。。。。');
+            // 发送网络请求，请求更多也的数据
+            // 等数据请求完成，并且将新的数据展示出来后
+            // 调用该接口后，可以多次加载，否则只会调用一次
+            bscrol.finishPullUp()
+    })
+
+    // 添加按钮点击事件监听
+    document.querySelector('.btn').addEventListener('click', function () {
+        console.log('-----');
+    })
+</script>
+</body>
+</html>
