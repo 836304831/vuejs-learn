@@ -79,10 +79,20 @@
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
 
-      // 3. 监听item图片完成
+    },
+    mounted() {
+      // 监听item图片完成
+      // this.$bus.$on("itemImageLoad", () => {
+      //   console.log("itemImageLoad -------------")
+      //   // 每加载一张图片刷新一次，过于频繁，需要进行防抖动操作
+      //   this.$refs.scroll.refresh()
+      // })
+
+      // 防抖动操作
+      const refresh = this.debounce(this.$refs.scroll.refresh, 500)
       this.$bus.$on("itemImageLoad", () => {
-        console.log("itemImageLoad -------------")
-        this.$refs.scroll.refresh()
+        // 防抖动函数调用
+        refresh()
       })
     },
     methods: {
@@ -248,7 +258,18 @@
         console.log("home上拉加载更多");
         this.getHomeGoods(this.currentType)
         this.$refs.scroll.finishPullUp()
+      },
+      debounce(func, delay) {
+        let timer = null
+        return function (...args) {
+          if (timer) clearTimeout(timer)
+
+          timer = setTimeout(() => {
+            func.apply(this, args)
+          }, delay)
+        }
       }
+
     }
   }
 </script>

@@ -54,13 +54,15 @@
     methods: {
       scrollTo(x, y, time=500) {
         // 参数为（坐标x, 坐标y, 返回持续的事件(ms)）
-        this.scroll.scrollTo(x, y, time)
+        this.scroll && this.scroll.scrollTo(x, y, time)
       },
       finishPullUp() {
-        this.scroll.finishPullUp()
+        this.scroll && this.scroll.finishPullUp()
       },
       refresh() {
-        this.scroll.refresh()
+        // 需要先判断scroll是否为空，为空时报错
+        console.log('refresh --------- ')
+        this.scroll && this.scroll.refresh()
       }
     }
   }
