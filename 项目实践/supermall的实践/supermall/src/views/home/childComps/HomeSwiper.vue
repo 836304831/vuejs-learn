@@ -4,7 +4,7 @@
       <a :href="item.link">
         <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
 <!--        <img :src="item.image" alt="">-->
-        <img src="~assets/server/imgs/home/woman-4056684__340.webp" alt="">
+        <img src="~assets/server/imgs/home/woman-4056684__340.webp" alt="" @load="SwiperImageLoad">
       </a>
     </swiper-item>
   </swiper>
@@ -15,6 +15,11 @@
   import SwiperItem from "@/components/common/swiper/SwiperItem";
   export default {
     name: "HomeSwiper",
+    data() {
+      return {
+        isLoad: false
+      }
+    },
     props: {
       banners: {
         type: Array,
@@ -26,6 +31,14 @@
     components: {
       Swiper,
       SwiperItem
+    },
+    methods: {
+      SwiperImageLoad() {
+        if (!this.isLoad) {
+          this.$emit("SwiperImageLoad")
+          this.isLoad = true
+        }
+      }
     }
   }
 </script>

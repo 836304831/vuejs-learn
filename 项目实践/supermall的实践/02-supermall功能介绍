@@ -1,0 +1,36 @@
+
+功能介绍
+
+1. FeatureView的封装
+
+2. TabControl封装
+
+3. 首页商品数据的请求
+    3.1 设计数据结构，用于保存数据，将Home.vue
+    3.2 发送数据请求：见 network目录
+
+4. 对商品数据进行展示
+    4.1 封装GoodList.vue组件
+    4.2 封装GoodListItem.vue组件
+
+5. 对滚进行重构，使用beter-scroll
+    5.1 对BackTop.vue组件进行封装，使用见18-补充
+    5.2 在Vue项目中使用better-scroll，见home.vue
+
+6. 回到顶部BackTop
+    6.1 对BackTop.vue组件的封装
+    6.2 如何监听组件的点击
+    6.3 BackTop组件的显示和隐藏
+
+7. 解决首页中可滚动区域的问题（图片加载延迟导致）
+
+8. 上来加载更多功能实现
+
+9. tabControl的吸顶效果
+    9.1 获取tabControl的off
+        必须知道滚动到多少时，开始有吸顶效果，这个时候需要获取tabControl的offsetTop
+        若直接在mounted中获取tabControl的offsetTop，那么值是不正确的
+        解决方法（也可以在监听所有图片加载完成，多次获取tabControl的offsetTop）：
+            监听HomeSwiper中img加载完成事件
+            加载完成后，发出事件，在home.vue中，再去获取tabControl的offsetTop
+    9.2

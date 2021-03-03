@@ -1,12 +1,21 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"> <div slot="center">购物街</div></nav-bar>
+
+    <!-- 为了解决在滑动到一定位置，固定 tab-control，默认不显示   -->
+    <tab-control ref= "tabControlFirst" :titles="['流行', '新款', '精选']" @tabClick="tabClick"
+                 class="tab-control" v-show="isTabFixed"></tab-control>
+
+
     <scroll class="content" ref="scroll" v-bind:probe-type="3"
             @scroll="contentScroll" v-bind:pull-up-load="true" @pullingUp="loadMore">
-      <home-swiper :banners="banners"></home-swiper>
+      <home-swiper :banners="banners"  @SwiperImageLoad="SwiperImageLoad"></home-swiper>
       <home-recommend-view :recommends="recommends"></home-recommend-view>
       <feature-view></feature-view>
-      <tab-control class='tab-control' :titles="['流行', '新款', '精选']" @tabClick="tabClick"></tab-control>
+
+      <!--  通过fixed样式固定tab-control 在使用better-scroll时不生效    -->
+      <tab-control ref= "tabControl" :titles="['流行', '新款', '精选']" @tabClick="tabClick"
+                   :class="{fixed: isTabFixed}"></tab-control>
       <ul>当前产品类型：{{currentType}}</ul>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
@@ -29,6 +38,8 @@
 
   import {getHomeMulitdata, getHomeGoods} from "@/network/home";
   import {debounce} from "@/common/utils"
+
+  import {getHomeMulitdataDemo, getHomeGoodsDemo} from "./demoData"
 
   export default {
     name: "Home",
@@ -63,7 +74,9 @@
           },
         },
         currentType: 'pop',
-        isShowBackTop: false
+        isShowBackTop: false,
+        tabOffsetTop: 0,
+        isTabFixed: false
       }
     },
     computed: {
@@ -82,7 +95,7 @@
 
     },
     mounted() {
-      // 监听item图片完成
+      // 监听item图片完成， 图片加载完成的事件监听
       // this.$bus.$on("itemImageLoad", () => {
       //   console.log("itemImageLoad -------------")
       //   // 每加载一张图片刷新一次，过于频繁，需要进行防抖动操作
@@ -109,34 +122,7 @@
         })
       },
       getHomeMulitdataDemo() {
-        return {
-          data: {
-            banner: {
-              list: [{
-                link: 'baidu.com',
-                image: '~assets/server/imgs/home/woman-4707542__340.jpg'
-              }, {
-                link: 'baidu.com',
-                image: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }, {
-                link: 'baidu.com',
-                image: '~assets/server/imgs/home/swiper/girl-5846483__340.webp'
-              }]
-            },
-            recommend: {
-              list: [{
-                link: 'baidu.com',
-                image: 'xx'
-              }, {
-                link: 'baidu.com',
-                image: 'xx'
-              }, {
-                link: 'baidu.com',
-                image: 'xx'
-              }]
-            }
-          }
-        }
+        return getHomeMulitdataDemo()
       },
       getHomeGoods(type) {
         const page = this.goods[type].page + 1
@@ -154,81 +140,7 @@
         })
       },
       getHomeGoodsDemo(type) {
-        return {
-          data: {
-            list:  [{
-              type: type,
-              price: 190,
-              cfav: 200,
-              show: {
-                img: '~assets/server/imgs/home/woman-4707542__340.jpg'
-              },
-            }, {
-              type: type,
-              price: 149,
-              cfav: 160,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            }, {
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            },{
-              type: type,
-              price: 600,
-              cfav: 10,
-              show: {
-                img: '~assets/server/imgs/home/swiper/woman-4707542__340.jpg'
-              }
-            }]
-          }
-        }
+        return getHomeGoodsDemo(type)
       },
 
       // 时间监听方法
@@ -245,6 +157,8 @@
             this.currentType = 'sell'
             break
         }
+        this.$refs.tabControlFirst.currentIndex = tabControlIndex
+        this.$refs.tabControl.currentIndex = tabControlIndex
       },
       backClick() {
         console.log("backClick");
@@ -252,15 +166,25 @@
         this.$refs.scroll.scrollTo(0, 0, 500)
       },
       contentScroll(position) {
+        // 1. 判断backTop是否显示
         // console.log(position);
         // 因为数据较少，要根据具体的手机信号设置该值，否则看不到效果，目前该值使用Moto G4可以看到效果
         this.isShowBackTop = (-position.y) > 200
 
+        // 2. 决定tabControl是否吸顶（position: fixed）
+        this.isTabFixed = (-position.y) > this.tabOffsetTop
+        console.log("isTabFixed: " + this.isTabFixed);
       },
       loadMore() {
         console.log("home上拉加载更多");
         this.getHomeGoods(this.currentType)
       },
+      SwiperImageLoad() {
+        // 获取tabControl的offsetTop
+        // 所有的组件都有一个属性el：用于获取组件中的元素
+        this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
+        console.log('tabOffsetTop: ' + this.tabOffsetTop)
+      }
 
     }
   }
@@ -275,17 +199,15 @@
   .home-nav {
     background-color: var(--color-tint);
     color: #ffffff;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 9;
+
+    /* 在使用六拉你去原生滚动时，为了让导航不跟随一起滚动，若使用beeter-scroll就可以不用这些属性*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*z-index: 9;*/
   }
 
-  .tab-control {
-    top: 44px;
-    z-index: 9;
-  }
   .content {
     /*height: 300px;*/
     overflow: hidden;
@@ -296,5 +218,10 @@
 
     left: 0;
     right: 0;
+  }
+
+  .tab-control {
+    position: relative;
+    z-index: 9;
   }
 </style>
