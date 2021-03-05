@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
 <!--    <img :src="goodsItem.show.img" alt="" @load="imageLoad">-->
     <img src="~assets/server/imgs/home/woman-4707542__340.jpg" alt="" @load="imageLoad">
@@ -27,6 +27,19 @@
       imageLoad() {
         console.log('imageLoad');
         this.$bus.$emit("itemImageLoad")
+      },
+      itemClick() {
+        // 跳转到详情页
+        console.log("跳转到详情页: " + this.goodsItem.iid);
+
+        // 传参方式1
+        this.$router.push('/detail/' + this.goodsItem.iid)
+
+        // 传参方式2
+        // this.$router.push({
+        //   path: '/detail',
+        //   query: {}
+        // })
       }
     }
   }

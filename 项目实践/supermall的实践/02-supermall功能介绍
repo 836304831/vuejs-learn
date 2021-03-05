@@ -33,4 +33,30 @@
         解决方法（也可以在监听所有图片加载完成，多次获取tabControl的offsetTop）：
             监听HomeSwiper中img加载完成事件
             加载完成后，发出事件，在home.vue中，再去获取tabControl的offsetTop
-    9.2
+    9.2 监听滚动，动态的改变tabControl的样式
+        问题：动态改变tabControl的样式时出现两个问题
+            问题1：下面的商品内容，会突然上衣
+            问题2：tabControl虽然设置了fixed，但是也会随着better scroll一起滚出去
+        解决方案：
+            - 在最上面，多复制一份PlaceHolder tabControl组件对象，利用它实现停留效果
+            - 当用户鼓捣弄到一定位置时，PlaceHolder tabControl组件就显示出来
+            - 但用户滚动达到一定位置时，PlaceHolder tabControl组件隐藏起来
+
+10. 让Home在切换到其他tab-bar之后在切换回来依然保持原来的状态
+    10.1 让Home不要销毁掉
+        使用keep-alive（将App.vue）
+            <keep-alive>
+              <router-view/>
+            </keep-alive>
+    10.2 让Home中的内容保持原来的位置(见Home.vue)
+        离开时，保存一个位置信息SaveY
+        进来时，将位置设置为原来保存的saveY即可（）
+            activated() {
+              console.log('actived');
+              this.$refs.scrol.scrollTo(0, -this.saveY, 0)
+              this.$refs.scroll.refresh()
+            },
+            deactivated() {
+              this.saveY = this.$refs.scroll.getScrollY()
+              console.log(this.saveY);
+            }
