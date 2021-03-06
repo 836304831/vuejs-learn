@@ -10,6 +10,27 @@ export function getDetailDataDemo(iid) {
           '默认快递',
         ],
         shopInfo: {
+          shopLogo: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
+          name: "仲陌美",
+          cFans: 1000,
+          cSells: 20001,
+          score: [
+            {
+              isBetter: false,
+              name: "商品相符",
+              score: 4.64
+            }, {
+              isBetter: true,
+              name: "价格合理",
+              score: 5
+            }, {
+              isBetter: true,
+              name: "质量满意",
+              score: 4.8
+            }
+          ],
+          cGoods: 500,
+
           services: [{
             name: '退货补运费',
             icon: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
@@ -45,6 +66,26 @@ export function getDetailDataDemo(iid) {
           '默认快递',
         ],
         shopInfo: {
+          shopLogo: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
+          name: "美特斯邦威",
+          cFans: 256,
+          cSells: 2001,
+          score: [
+            {
+              isBetter: false,
+              name: "商品相符",
+              score: 4.64
+            }, {
+              isBetter: true,
+              name: "价格合理",
+              score: 5
+            }, {
+              isBetter: true,
+              name: "质量满意",
+              score: 4.8
+            }
+          ],
+          cGoods: 460,
           services: [{
             name: '7天无理由退货',
             icon: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
@@ -75,6 +116,26 @@ export function getDetailDataDemo(iid) {
           '默认快递',
         ],
         shopInfo: {
+          shopLogo: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
+          name: "耐克",
+          cFans: 456,
+          cSells: 8001,
+          score: [
+            {
+              isBetter: false,
+              name: "商品相符",
+              score: 4.64
+            }, {
+              isBetter: true,
+              name: "价格合理",
+              score: 5
+            }, {
+              isBetter: true,
+              name: "质量满意",
+              score: 4.8
+            }
+          ],
+          cGoods: 2500,
           services: [{
             name: '退货补运费',
             icon: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
@@ -107,6 +168,26 @@ export function getDetailDataDemo(iid) {
           '默认快递',
         ],
         shopInfo: {
+          shopLogo: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
+          name: "乔丹",
+          cFans: 890,
+          cSells: 9001,
+          score: [
+            {
+              isBetter: false,
+              name: "商品相符",
+              score: 4.64
+            }, {
+              isBetter: true,
+              name: "价格合理",
+              score: 5
+            }, {
+              isBetter: true,
+              name: "质量满意",
+              score: 4.8
+            }
+          ],
+          cGoods: 1200,
           services: [{
             name: '72小时发货',
             icon: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
@@ -139,6 +220,26 @@ export function getDetailDataDemo(iid) {
           '默认快递',
         ],
         shopInfo: {
+          shopLogo: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
+          name: "新百伦",
+          cFans: 560,
+          cSells: 20001,
+          score: [
+            {
+              isBetter: false,
+              name: "商品相符",
+              score: 4.64
+            }, {
+              isBetter: true,
+              name: "价格合理",
+              score: 5
+            }, {
+              isBetter: true,
+              name: "质量满意",
+              score: 4.8
+            }
+          ],
+          cGoods: 1600,
           services: [{
             name: '7天无理由退货',
             icon: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
@@ -172,6 +273,26 @@ export function getDetailDataDemo(iid) {
           '默认快递',
         ],
         shopInfo: {
+          shopLogo: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
+          name: "鸿星尔克",
+          cFans: 5654,
+          cSells: 21200,
+          score: [
+            {
+              isBetter: false,
+              name: "商品相符",
+              score: 4.64
+            }, {
+              isBetter: true,
+              name: "价格合理",
+              score: 5
+            }, {
+              isBetter: true,
+              name: "质量满意",
+              score: 4.8
+            }
+          ],
+          cGoods: 1500,
           services: [{
             name: '72小时发货',
             icon: require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),

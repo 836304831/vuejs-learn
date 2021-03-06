@@ -3,7 +3,7 @@
     <detail-nav-bar></detail-nav-bar>
     <detail-swiper :top-images="topImages"></detail-swiper>
     <detail-base-info :goods="goods"></detail-base-info>
-
+    <detail-shop-info :shop="shop"></detail-shop-info>
   </div>
 
 </template>
@@ -12,8 +12,9 @@
   import DetailNavBar from "@/views/detail/childComps/DetailNavBar";
   import DetailSwiper from "@/views/detail/childComps/DetailSwiper";
   import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
+  import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
 
-  import {getDetail, Goods} from "@/network/detail"
+  import {getDetail, Goods, Shop} from "@/network/detail"
   import {getDetailDataDemo} from './detailDemo'
 
 
@@ -23,13 +24,15 @@
     components: {
       DetailNavBar,
       DetailSwiper,
-      DetailBaseInfo
+      DetailBaseInfo,
+      DetailShopInfo
     },
     data() {
       return {
         iid: null,
         topImages: [],
-        goods: null
+        goods: {},
+        shop: {}
       }
     },
     created() {
@@ -51,8 +54,9 @@
 
         // 2. 获取商品信息
         this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services)
-        // 3. 创建店铺信息的对象
 
+        // 3. 创建店铺信息的对象
+        this.shop = new Shop(data.shopInfo)
       })
     },
     mounted() {
