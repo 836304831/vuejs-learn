@@ -30,7 +30,7 @@
       getDetail(this.iid).then(res => {
         console.log("getDetail:" +  res)
         // 替换网络请求数据, 服务器没有搭建，暂时使用本地数据替代
-        res = getDetailDataDemo()
+        res = getDetailDataDemo(this.iid)
 
         this.topImages = res.result.itemInfo.topImages
         console.log("topImages:")

@@ -4,10 +4,8 @@
     <img :src="goodsItem.show.img" alt="" @load="imageLoad">
 <!--    <img src="~assets/server/imgs/home/woman-4707542__340.jpg" alt="" @load="imageLoad">-->
     <div class="goods-info">
-      <p>{{goodsItem.title}}</p>
-      <span class="price">{{goodsItem.price}}</span>
-      <span class="collect">{{goodsItem.cfav}}</span>
-      <span class="collect">{{goodsItem.show.img}}</span>
+      <span class="price">价格：{{goodsItem.price}}</span>
+      <span class="collect">收藏：{{goodsItem.cfav}}</span>
     </div>
   </div>
 </template>

@@ -16,7 +16,6 @@
       <!--  通过fixed样式固定tab-control 在使用better-scroll时不生效    -->
       <tab-control ref= "tabControl" :titles="['流行', '新款', '精选']" @tabClick="tabClick"
                    :class="{fixed: isTabFixed}"></tab-control>
-      <ul>当前产品类型：{{currentType}}</ul>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
     <!-- 修饰符.vative的使用
