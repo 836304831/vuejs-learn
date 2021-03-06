@@ -1,8 +1,8 @@
 <template>
   <div class="goods-item" @click="itemClick">
     <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
-<!--    <img :src="goodsItem.show.img" alt="" @load="imageLoad">-->
-    <img src="~assets/server/imgs/home/woman-4707542__340.jpg" alt="" @load="imageLoad">
+    <img :src="goodsItem.show.img" alt="" @load="imageLoad">
+<!--    <img src="~assets/server/imgs/home/woman-4707542__340.jpg" alt="" @load="imageLoad">-->
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>

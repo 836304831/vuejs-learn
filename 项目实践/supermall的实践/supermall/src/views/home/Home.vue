@@ -131,6 +131,7 @@
 
           // 替换网络请求数据, 服务器没有搭建，暂时使用本地图片替代
           res = this.getHomeMulitdataDemo()
+
           this.banners = res.data.banner.list
           this.recommends = res.data.recommend.list
         })

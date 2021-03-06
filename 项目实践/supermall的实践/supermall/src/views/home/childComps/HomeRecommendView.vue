@@ -2,8 +2,7 @@
   <div class="recommend">
     <div v-for="item in recommends" class="recommend-item">
       <a :href="item.link">
-        <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
-        <img src="~assets/server/imgs/home/recommend/woman-5978200__340.webp" alt="">
+        <img :src="item.image" alt="">
         <div>{{item.title}}</div>
       </a>
     </div>
