@@ -6,6 +6,7 @@
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"></detail-goods-info>
+      <detail-param-info :param-info="paramsInfo"></detail-param-info>
     </scroll>
   </div>
 
@@ -17,13 +18,12 @@
   import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
   import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
   import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
+  import DetailParamInfo from "@/views/detail/childComps/DetailParamInfo";
 
   import Scroll from "@/components/common/scroll/Scroll";
 
-  import {getDetail, Goods, Shop} from "@/network/detail"
+  import {getDetail, Goods, Shop, GoodsParam} from "@/network/detail"
   import {getDetailDataDemo} from './detailDemo'
-
-
 
   export default {
     name: "Detail",
@@ -33,6 +33,7 @@
       DetailBaseInfo,
       DetailShopInfo,
       DetailGoodsInfo,
+      DetailParamInfo,
       Scroll
     },
     data() {
@@ -41,7 +42,8 @@
         topImages: [],
         goods: {},
         shop: {},
-        detailInfo: {}
+        detailInfo: {},
+        paramsInfo: {}
 
       }
     },
@@ -68,8 +70,11 @@
         // 3. 创建店铺信息的对象
         this.shop = new Shop(data.shopInfo)
 
-        // 保存商品的详细数据
+        // 4. 保存商品的详细数据
         this.detailInfo = data.detailInfo
+
+        // 5. 获取参数的信息
+        this.paramsInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule)
       })
     },
     mounted() {
@@ -99,6 +104,7 @@
   }
   .content {
     height: calc(100% - 44px);
+    background-color: #fff;
   }
 
 </style>

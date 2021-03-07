@@ -70,6 +70,39 @@ export function getDetailDataDemo(iid) {
               require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
             ]
           }]
+        },
+        itemParams: {
+          info: {
+            anchor: 'prodcut_info',
+            key: '产品参数',
+            set: [{
+              key: '图案',
+              value: '宫廷复古图/民族复古图， 字母/文字/数字'
+            },{
+              key: '厂名',
+              value: 'acedar'
+            },{
+              key: '颜色',
+              value: '黑白凭拼接'
+            },{
+              key: '袖型',
+              value: '常规袖'
+            },{
+              key: '上衣厚度',
+              value: '适中'
+            }]
+          },
+          rule: {
+            anchor: 'size_info',
+            disclaimer: "* 以上尺寸为实物人工测量，因测量但是不同，会有1-2cm误差",
+            key: "尺码说明",
+            tables: [[
+              ['尺码', 'M', 'L', 'XL', 'XXL'],
+              ['衣长', '61.5', '63', '64.5', '66'],
+              ['胸围', '98', '104', '110', '116'],
+              ['袖长', '63', '66', '68.5', '70.5'],
+            ]]
+          }
         }
       }
     },
@@ -135,6 +168,39 @@ export function getDetailDataDemo(iid) {
               require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
             ]
           }]
+        },
+        itemParams: {
+          info: {
+            anchor: 'prodcut_info',
+            key: '产品参数',
+            set: [{
+              key: '图案',
+              value: '宫廷复古图/民族复古图， 字母/文字/数字'
+            },{
+              key: '厂名',
+              value: 'acedar'
+            },{
+              key: '颜色',
+              value: '黑白凭拼接'
+            },{
+              key: '袖型',
+              value: '常规袖'
+            },{
+              key: '上衣厚度',
+              value: '适中'
+            }]
+          },
+          rule: {
+            anchor: 'size_info',
+            disclaimer: "* 以上尺寸为实物人工测量，因测量但是不同，会有1-2cm误差",
+            key: "尺码说明",
+            tables: [[
+              ['尺码', 'M', 'L', 'XL', 'XXL'],
+              ['衣长', '61.5', '63', '64.5', '66'],
+              ['胸围', '98', '104', '110', '116'],
+              ['袖长', '63', '66', '68.5', '70.5'],
+            ]]
+          }
         }
       }
     },
@@ -202,6 +268,39 @@ export function getDetailDataDemo(iid) {
               require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
             ]
           }]
+        },
+        itemParams: {
+          info: {
+            anchor: 'prodcut_info',
+            key: '产品参数',
+            set: [{
+              key: '图案',
+              value: '宫廷复古图/民族复古图， 字母/文字/数字'
+            },{
+              key: '厂名',
+              value: 'acedar'
+            },{
+              key: '颜色',
+              value: '黑白凭拼接'
+            },{
+              key: '袖型',
+              value: '常规袖'
+            },{
+              key: '上衣厚度',
+              value: '适中'
+            }]
+          },
+          rule: {
+            anchor: 'size_info',
+            disclaimer: "* 以上尺寸为实物人工测量，因测量但是不同，会有1-2cm误差",
+            key: "尺码说明",
+            tables: [[
+              ['尺码', 'M', 'L', 'XL', 'XXL'],
+              ['衣长', '61.5', '63', '64.5', '66'],
+              ['胸围', '98', '104', '110', '116'],
+              ['袖长', '63', '66', '68.5', '70.5'],
+            ]]
+          }
         }
       }
     },
@@ -269,6 +368,39 @@ export function getDetailDataDemo(iid) {
               require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
             ]
           }]
+        },
+        itemParams: {
+          info: {
+            anchor: 'prodcut_info',
+            key: '产品参数',
+            set: [{
+              key: '图案',
+              value: '宫廷复古图/民族复古图， 字母/文字/数字'
+            },{
+              key: '厂名',
+              value: 'acedar'
+            },{
+              key: '颜色',
+              value: '黑白凭拼接'
+            },{
+              key: '袖型',
+              value: '常规袖'
+            },{
+              key: '上衣厚度',
+              value: '适中'
+            }]
+          },
+          rule: {
+            anchor: 'size_info',
+            disclaimer: "* 以上尺寸为实物人工测量，因测量但是不同，会有1-2cm误差",
+            key: "尺码说明",
+            tables: [[
+              ['尺码', 'M', 'L', 'XL', 'XXL'],
+              ['衣长', '61.5', '63', '64.5', '66'],
+              ['胸围', '98', '104', '110', '116'],
+              ['袖长', '63', '66', '68.5', '70.5'],
+            ]]
+          }
         }
       }
     },
@@ -337,6 +469,39 @@ export function getDetailDataDemo(iid) {
               require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
             ]
           }]
+        },
+        itemParams: {
+          info: {
+            anchor: 'prodcut_info',
+            key: '产品参数',
+            set: [{
+              key: '图案',
+              value: '宫廷复古图/民族复古图， 字母/文字/数字'
+            },{
+              key: '厂名',
+              value: 'acedar'
+            },{
+              key: '颜色',
+              value: '黑白凭拼接'
+            },{
+              key: '袖型',
+              value: '常规袖'
+            },{
+              key: '上衣厚度',
+              value: '适中'
+            }]
+          },
+          rule: {
+            anchor: 'size_info',
+            disclaimer: "* 以上尺寸为实物人工测量，因测量但是不同，会有1-2cm误差",
+            key: "尺码说明",
+            tables: [[
+              ['尺码', 'M', 'L', 'XL', 'XXL'],
+              ['衣长', '61.5', '63', '64.5', '66'],
+              ['胸围', '98', '104', '110', '116'],
+              ['袖长', '63', '66', '68.5', '70.5'],
+            ]]
+          }
         }
       }
     },
@@ -409,6 +574,39 @@ export function getDetailDataDemo(iid) {
               require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
             ]
           }]
+        },
+        itemParams: {
+          info: {
+            anchor: 'prodcut_info',
+            key: '产品参数',
+            set: [{
+              key: '图案',
+              value: '宫廷复古图/民族复古图， 字母/文字/数字'
+            },{
+              key: '厂名',
+              value: 'acedar'
+            },{
+              key: '颜色',
+              value: '黑白凭拼接'
+            },{
+              key: '袖型',
+              value: '常规袖'
+            },{
+              key: '上衣厚度',
+              value: '适中'
+            }]
+          },
+          rule: {
+            anchor: 'size_info',
+            disclaimer: "* 以上尺寸为实物人工测量，因测量但是不同，会有1-2cm误差",
+            key: "尺码说明",
+            tables: [[
+              ['尺码', 'M', 'L', 'XL', 'XXL'],
+              ['衣长', '61.5', '63', '64.5', '66'],
+              ['胸围', '98', '104', '110', '116'],
+              ['袖长', '63', '66', '68.5', '70.5'],
+            ]]
+          }
         }
       }
     }
