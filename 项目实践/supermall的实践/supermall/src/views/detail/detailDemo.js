@@ -703,3 +703,43 @@ export function getDetailDataDemo(iid) {
   }
   return DetailSwiperData[int_id.toString()]
 }
+
+export function getRecommendDataDemo() {
+  return {
+    data: {
+      list: [{
+        iid: '1',
+        cfav: 10000,
+        discount: 700,
+        price: '84.29',
+        discountPrice: '59',
+        title: '夏季新款',
+        image: require('../../assets/server/imgs/detail/recommend/beach-5064674__340.webp'),
+     }, {
+        iid: '2',
+        cfav: 10000,
+        discount: 700,
+        price: '84.29',
+        discountPrice: '59',
+        title: '夏季新款',
+        image: require('../../assets/server/imgs/detail/recommend/couple-3467634__340.webp'),
+      }, {
+        iid: '3',
+        cfav: 10000,
+        discount: 700,
+        price: '84.29',
+        discountPrice: '59',
+        title: '夏季新款',
+        image: require('../../assets/server/imgs/detail/recommend/cute-4436103__340.webp'),
+      }, {
+        iid: '4',
+        cfav: 10000,
+        discount: 700,
+        price: '84.29',
+        discountPrice: '59',
+        title: '夏季新款',
+        image: require('../../assets/server/imgs/detail/recommend/field-5430070__340.jpg'),
+      }]
+    }
+  }
+}

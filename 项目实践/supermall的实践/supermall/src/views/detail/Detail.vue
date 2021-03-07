@@ -8,6 +8,7 @@
       <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"></detail-goods-info>
       <detail-param-info :param-info="paramsInfo"></detail-param-info>
       <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
+      <goods-list :goods="recommends"></goods-list>
     </scroll>
   </div>
 
@@ -23,9 +24,10 @@
   import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
 
   import Scroll from "@/components/common/scroll/Scroll";
+  import GoodsList from "@/components/content/goods/GoodsList";
 
-  import {getDetail, Goods, Shop, GoodsParam} from "@/network/detail"
-  import {getDetailDataDemo} from './detailDemo'
+  import {getDetail, getRecommend, Goods, Shop, GoodsParam} from "@/network/detail"
+  import {getDetailDataDemo, getRecommendDataDemo} from './detailDemo'
 
   export default {
     name: "Detail",
@@ -37,6 +39,7 @@
       DetailGoodsInfo,
       DetailParamInfo,
       DetailCommentInfo,
+      GoodsList,
       Scroll
     },
     data() {
@@ -47,7 +50,8 @@
         shop: {},
         detailInfo: {},
         paramsInfo: {},
-        commentInfo: {}
+        commentInfo: {},
+        recommends: []
 
       }
     },
@@ -84,6 +88,16 @@
         if (data.rate.cRate != 0){
           this.commentInfo = data.rate.list[0]
         }
+
+      })
+
+      // 3. 请求推荐数据
+      getRecommend().then(res => {
+        console.log(res)
+
+        // 替换网络请求数据, 服务器没有搭建，暂时使用本地数据替代
+        res = getRecommendDataDemo()
+        this.recommends = res.data.list
 
       })
     },

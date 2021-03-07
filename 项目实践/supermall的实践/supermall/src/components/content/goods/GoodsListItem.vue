@@ -1,7 +1,7 @@
 <template>
   <div class="goods-item" @click="itemClick">
     <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
-    <img :src="goodsItem.show.img" alt="" @load="imageLoad">
+    <img :src="showImg" alt="" @load="imageLoad">
 <!--    <img src="~assets/server/imgs/home/woman-4707542__340.jpg" alt="" @load="imageLoad">-->
     <div class="goods-info">
       <span class="price">价格：{{goodsItem.price}}</span>
@@ -19,6 +19,11 @@
         default() {
           return {}
         }
+      }
+    },
+    computed: {
+      showImg() {
+        return this.goodsItem.image || this.goodsItem.show.img
       }
     },
     methods: {
