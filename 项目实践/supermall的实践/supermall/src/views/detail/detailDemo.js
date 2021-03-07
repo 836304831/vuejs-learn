@@ -103,6 +103,21 @@ export function getDetailDataDemo(iid) {
               ['袖长', '63', '66', '68.5', '70.5'],
             ]]
           }
+        },
+        rate: {
+          Crate: 1,
+          list: [{
+            created: 1535804719,
+            user: {
+              avatar: require('../../assets/server/imgs/detail/commentinfo/profile.jpg'),
+              uname: 'acedar'
+            },
+            content: '很好，很nice',
+            style: 'M 白色',
+            images: [
+              require('../../assets/server/imgs/detail/commentinfo/mountain-5795883__340.webp'),
+            ]
+          }]
         }
       }
     },
@@ -201,6 +216,21 @@ export function getDetailDataDemo(iid) {
               ['袖长', '63', '66', '68.5', '70.5'],
             ]]
           }
+        },
+        rate: {
+          Crate: 1,
+          list: [{
+            created: 1535804719,
+            user: {
+              avatar: require('../../assets/server/imgs/detail/commentinfo/profile.jpg'),
+              uname: 'acedar'
+            },
+            content: '很好，很nice',
+            style: 'M 白色',
+            images: [
+              require('../../assets/server/imgs/detail/commentinfo/mountain-5795883__340.webp'),
+            ]
+          }]
         }
       }
     },
@@ -301,6 +331,21 @@ export function getDetailDataDemo(iid) {
               ['袖长', '63', '66', '68.5', '70.5'],
             ]]
           }
+        },
+        rate: {
+          Crate: 1,
+          list: [{
+            created: 1535804719,
+            user: {
+              avatar: require('../../assets/server/imgs/detail/commentinfo/profile.jpg'),
+              uname: 'acedar'
+            },
+            content: '很好，很nice',
+            style: 'M 白色',
+            images: [
+              require('../../assets/server/imgs/detail/commentinfo/mountain-5795883__340.webp'),
+            ]
+          }]
         }
       }
     },
@@ -401,6 +446,21 @@ export function getDetailDataDemo(iid) {
               ['袖长', '63', '66', '68.5', '70.5'],
             ]]
           }
+        },
+        rate: {
+          Crate: 1,
+          list: [{
+            created: 1535804719,
+            user: {
+              avatar: require('../../assets/server/imgs/detail/commentinfo/profile.jpg'),
+              uname: 'acedar'
+            },
+            content: '很好，很nice',
+            style: 'M 白色',
+            images: [
+              require('../../assets/server/imgs/detail/commentinfo/mountain-5795883__340.webp'),
+            ]
+          }]
         }
       }
     },
@@ -502,6 +562,21 @@ export function getDetailDataDemo(iid) {
               ['袖长', '63', '66', '68.5', '70.5'],
             ]]
           }
+        },
+        rate: {
+          Crate: 1,
+          list: [{
+            created: 1535694719,
+            user: {
+              avatar: require('../../assets/server/imgs/detail/commentinfo/profile.jpg'),
+              uname: 'acedar'
+            },
+            content: '很好，很nice',
+            style: 'M 白色',
+            images: [
+              require('../../assets/server/imgs/detail/commentinfo/mountain-5795883__340.webp'),
+            ]
+          }]
         }
       }
     },
@@ -607,6 +682,21 @@ export function getDetailDataDemo(iid) {
               ['袖长', '63', '66', '68.5', '70.5'],
             ]]
           }
+        },
+        rate: {
+          Crate: 1,
+          list: [{
+            created: 1535804719,
+            user: {
+              avatar: require('../../assets/server/imgs/detail/commentinfo/profile.jpg'),
+              uname: 'acedar'
+            },
+            content: '很好，很nice',
+            style: 'M 白色',
+            images: [
+              require('../../assets/server/imgs/detail/commentinfo/mountain-5795883__340.webp'),
+            ]
+          }]
         }
       }
     }

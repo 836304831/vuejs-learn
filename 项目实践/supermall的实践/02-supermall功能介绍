@@ -2,8 +2,16 @@
 功能介绍
 
 1. FeatureView的封装
+    独立组件封装FeatureView
+        - div -> img
 
 2. TabControl封装
+    独立组件的封装
+        - props -> titles
+        - div -> 根据titles v-for 遍历div->span
+        - css 相关
+        - 选用哪一个tab，哪一个tab的文件颜色改变，下面加上border-botton
+            - 使用currentIndex判断当前指向哪一个tab
 
 3. 首页商品数据的请求
     3.1 设计数据结构，用于保存数据，将Home.vue
@@ -20,9 +28,43 @@
 6. 回到顶部BackTop
     6.1 对BackTop.vue组件的封装
     6.2 如何监听组件的点击
+        直接监听back-top的点击，监听是必须添加修饰符.native
+        回到顶部
+            - scrool对象，scrool.scrollTo(x, y, time)
+            - this.$ref.scroll.scrollTo(0, 0, 500)
     6.3 BackTop组件的显示和隐藏
+        isShowBackTop: false
+        监听滚动，拿到滚动的位置
+            - -position > 1000 —> isShowBackTop: true
+            - isShowBackTop = -position.y > 1000
 
 7. 解决首页中可滚动区域的问题（图片加载延迟导致）
+    7.1 better-scroll在决定有多少区域可以滚动时，是根据scrollHeight属性巨顶
+        - scrollHeight属性是放Better-scroll的content中的子组件的高度
+        - 但在首页中，刚开始计算scrollHeight属性时，因为图片的延迟加载，没有将图片计算在内，导致计算的结果是错误的
+        - 图片加载后有了新的高度，但scrollHeight属性值没有更新，导致滚动出现问题
+    7.2 解决滚动出现不正确的问题
+        - 监听每一张图片是否加载完成，一旦有图片加载完成，执行一个scroll.refresh，触发重新计算scrollHeight
+        - 监听图片加载完成
+            - 原生的js监听图片：img.onload=function() {}
+            - Vue中监听，@load=”方法“
+        调用scroll.refresh,触发计算scrollHeight
+    7.3 如何见goodsListItem.vue中的事件传入Home.vue（非父子组件通讯）
+        - 非父子组件通讯，次奥也能够事件总线
+            - bus->总线
+            - Vue.prototype.$bus=new Vue（）
+            - this.bus.emit("事件名称", 参数)
+            - this.bus.on("事件名称", 回调函数(参数))
+    7.4 refresh找不到问题
+        - 在scroll.vue中，调用this.scroll方法之前，判断this.scroll对象是否有值
+        - 在mounted生命周期函数中使用this.$refs.scrool而不是定义在created中
+    7.5 对于refresh调用非常频繁，影响性能，需要进行防抖操作
+        - 防抖debounce/节流throttle
+        - 防抖函数起作用过程
+            - 如果我们直接执行refresh,那么refresh函数会加载一张图片执行一次
+            - 可以将refresh函数传入debounce函数，生成一个新的函数
+            - 之后在调用非常频繁的时候，就使用新生成的函数
+            - 新生成的函数并不会频繁的带哦用，如果下一次执行的非常快，那么会见上一次取消掉
 
 8. 上来加载更多功能实现
 
