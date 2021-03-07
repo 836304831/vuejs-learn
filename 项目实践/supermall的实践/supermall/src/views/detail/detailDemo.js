@@ -55,6 +55,21 @@ export function getDetailDataDemo(iid) {
             require('../../assets/server/imgs/detail/swiper/child-5943325__340.webp'),
             require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp')
           ]
+        },
+        detailInfo: {
+          desc: '新款上市',
+          detailImage: [{
+            key: '穿着效果',
+            desc: '',
+            list: [
+              require('../../assets/server/imgs/detail/detailinfo/woman-5665943__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5828786__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5978200__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-6010056__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/world-trade-center-5889199__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
+            ]
+          }]
         }
       }
     },
@@ -105,6 +120,21 @@ export function getDetailDataDemo(iid) {
             require('../../assets/server/imgs/detail/swiper/boat-5000655__340.webp'),
             require('../../assets/server/imgs/detail/swiper/book-5953965__340.webp')
           ]
+        },
+        detailInfo: {
+          desc: '新款上市',
+          detailImage: [{
+            key: '穿着效果',
+            desc: '',
+            list: [
+              require('../../assets/server/imgs/detail/detailinfo/woman-5665943__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5828786__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5978200__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-6010056__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/world-trade-center-5889199__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
+            ]
+          }]
         }
       }
     },
@@ -157,6 +187,21 @@ export function getDetailDataDemo(iid) {
             require('../../assets/server/imgs/detail/swiper/child-5943325__340.webp')
 
           ]
+        },
+        detailInfo: {
+          desc: '新款上市',
+          detailImage: [{
+            key: '穿着效果',
+            desc: '',
+            list: [
+              require('../../assets/server/imgs/detail/detailinfo/woman-5665943__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5828786__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5978200__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-6010056__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/world-trade-center-5889199__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
+            ]
+          }]
         }
       }
     },
@@ -209,6 +254,21 @@ export function getDetailDataDemo(iid) {
             require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
             require('../../assets/server/imgs/detail/swiper/yoga-5281457__340.webp')
           ]
+        },
+        detailInfo: {
+          desc: '新款上市',
+          detailImage: [{
+            key: '穿着效果',
+            desc: '',
+            list: [
+              require('../../assets/server/imgs/detail/detailinfo/woman-5665943__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5828786__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5978200__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-6010056__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/world-trade-center-5889199__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
+            ]
+          }]
         }
       }
     },
@@ -262,6 +322,21 @@ export function getDetailDataDemo(iid) {
             require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
             require('../../assets/server/imgs/detail/swiper/yoga-5281457__340.webp')
           ]
+        },
+        detailInfo: {
+          desc: '新款上市',
+          detailImage: [{
+            key: '穿着效果',
+            desc: '',
+            list: [
+              require('../../assets/server/imgs/detail/detailinfo/woman-5665943__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5828786__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5978200__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-6010056__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/world-trade-center-5889199__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
+            ]
+          }]
         }
       }
     },
@@ -319,6 +394,21 @@ export function getDetailDataDemo(iid) {
             require('../../assets/server/imgs/detail/swiper/chapel-5878656__340.webp'),
             require('../../assets/server/imgs/detail/swiper/child-5943325__340.webp')
           ]
+        },
+        detailInfo: {
+          desc: '新款上市',
+          detailImage: [{
+            key: '穿着效果',
+            desc: '',
+            list: [
+              require('../../assets/server/imgs/detail/detailinfo/woman-5665943__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5828786__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-5978200__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/woman-6010056__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/world-trade-center-5889199__340.webp'),
+              require('../../assets/server/imgs/detail/detailinfo/yoga-5281457__340.webp')
+            ]
+          }]
         }
       }
     }

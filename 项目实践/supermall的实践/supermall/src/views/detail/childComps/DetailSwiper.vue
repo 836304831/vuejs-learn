@@ -3,7 +3,6 @@
     <swiper class="detail-swiper">
       <swiper-item class="detail-swiper-item" v-for="(item, index) in topImages" :key="index">
         <img :src="item" alt="">
-        {{item}}
 <!--        <img src="~assets/server/imgs/detail/beach-5064674__340.webp" alt="">-->
       </swiper-item>
     </swiper>

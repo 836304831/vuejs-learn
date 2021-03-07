@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <detail-nav-bar></detail-nav-bar>
-    <detail-swiper :top-images="topImages"></detail-swiper>
-    <detail-base-info :goods="goods"></detail-base-info>
-    <detail-shop-info :shop="shop"></detail-shop-info>
+  <div id="detail">
+    <detail-nav-bar class="detail-nav"></detail-nav-bar>
+    <scroll class="content">
+      <detail-swiper :top-images="topImages"></detail-swiper>
+      <detail-base-info :goods="goods"></detail-base-info>
+      <detail-shop-info :shop="shop"></detail-shop-info>
+      <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"></detail-goods-info>
+    </scroll>
   </div>
 
 </template>
@@ -13,6 +16,9 @@
   import DetailSwiper from "@/views/detail/childComps/DetailSwiper";
   import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
   import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
+  import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
+
+  import Scroll from "@/components/common/scroll/Scroll";
 
   import {getDetail, Goods, Shop} from "@/network/detail"
   import {getDetailDataDemo} from './detailDemo'
@@ -25,14 +31,18 @@
       DetailNavBar,
       DetailSwiper,
       DetailBaseInfo,
-      DetailShopInfo
+      DetailShopInfo,
+      DetailGoodsInfo,
+      Scroll
     },
     data() {
       return {
         iid: null,
         topImages: [],
         goods: {},
-        shop: {}
+        shop: {},
+        detailInfo: {}
+
       }
     },
     created() {
@@ -57,15 +67,38 @@
 
         // 3. 创建店铺信息的对象
         this.shop = new Shop(data.shopInfo)
+
+        // 保存商品的详细数据
+        this.detailInfo = data.detailInfo
       })
     },
     mounted() {
       this.iid = this.$route.params.iid
       console.log("iid" + this.iid);
+    },
+    methods: {
+      imageLoad() {
+        this.$refs.scroll.refresh()
+      }
     }
   }
 </script>
 
 <style scoped>
+  #detail {
+    position: relative;
+    z-index: 9;
+    background-color: #fff;
+    height: 100vh;
+  }
+
+  .detail-nav {
+    position: relative;
+    z-index: 9;
+    background-color: #fff;
+  }
+  .content {
+    height: calc(100% - 44px);
+  }
 
 </style>
