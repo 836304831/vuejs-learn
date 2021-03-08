@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="detail-nav"></detail-nav-bar>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -28,6 +28,7 @@
 
   import {getDetail, getRecommend, Goods, Shop, GoodsParam} from "@/network/detail"
   import {getDetailDataDemo, getRecommendDataDemo} from './detailDemo'
+  import {debounce} from "@/common/utils";
 
   export default {
     name: "Detail",
@@ -51,11 +52,13 @@
         detailInfo: {},
         paramsInfo: {},
         commentInfo: {},
-        recommends: []
+        recommends: [],
+        itemImgListener: null
 
       }
     },
     created() {
+      console.log("created---------");
       // 1. 保存传入的iid
       this.iid = this.$route.params.iid
       console.log("iid" + this.iid);
@@ -101,14 +104,31 @@
 
       })
     },
+    activated() {
+      'activated------------'
+    },
+    deactivated() {
+      'deactivated----------'
+    },
     mounted() {
       this.iid = this.$route.params.iid
       console.log("iid" + this.iid);
+
+      // 与home.vue的mounted代码一样，可以使用混入方式改写
+      let newRefresh = debounce(this.$refs.scroll.refresh, 100)
+      this.itemImgListener = () =>{
+        newRefresh()
+      }
+      this.$bus.$on('itemImageLoad', this.itemImgListener)
     },
     methods: {
       imageLoad() {
         this.$refs.scroll.refresh()
       }
+    },
+    destroyed() {
+      console.log('destroyed----------------');
+      this.$bus.$off('itemImgLoad', this.itemImgListener)
     }
   }
 </script>

@@ -3,7 +3,7 @@
     <swiper-item class="home-swiper-item" v-for="item in banners">
       <a :href="item.link">
         <!--  因为没有搭建后台服务器，这里先使用本地图片替代  -->
-        <img :src="item.image" alt="">
+        <img :src="item.image" alt=""  @load="SwiperImageLoad">
 <!--        <img src="~assets/server/imgs/home/woman-4056684__340.webp" alt="" @load="SwiperImageLoad">-->
       </a>
     </swiper-item>

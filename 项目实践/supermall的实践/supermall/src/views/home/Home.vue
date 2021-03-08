@@ -76,7 +76,8 @@
         isShowBackTop: false,
         tabOffsetTop: 0,
         isTabFixed: false,
-        saveY: 0
+        saveY: 0,
+        itemImgListener: null
       }
     },
     computed: {
@@ -94,8 +95,12 @@
       this.$refs.scroll.refresh()
     },
     deactivated() {
+      // 1. 保存Y值
       this.saveY = this.$refs.scroll.getScrollY()
       console.log(this.saveY);
+
+      // 2. 因为多个地方使用GoodListItem组件，但跳转到详情等其他页面时，需要取消事件监听
+      this.$bus.$off("itemImageLoad", this.itemImgListener)
     },
     created() {
       // 1. 请求多个数据
@@ -117,10 +122,11 @@
 
       // 防抖动操作
       const refresh = debounce(this.$refs.scroll.refresh, 500)
-      this.$bus.$on("itemImageLoad", () => {
+      this.itemImgListener = () => {
         // 防抖动函数调用
         refresh()
-      })
+      }
+      this.$bus.$on("itemImageLoad", this.itemImgListener)
     },
     methods: {
       // 网络请求相关算法
@@ -183,7 +189,8 @@
         // 1. 判断backTop是否显示
         // console.log(position);
         // 因为数据较少，要根据具体的手机信号设置该值，否则看不到效果，目前该值使用Moto G4可以看到效果
-        this.isShowBackTop = (-position.y) > 200
+        this.isShowBackTop = (-position.y) > this.tabOffsetTop
+        console.log('tabOffsetTop: '+ this.tabOffsetTop);
 
         // 2. 决定tabControl是否吸顶（position: fixed）
         this.isTabFixed = (-position.y) > this.tabOffsetTop
