@@ -32,6 +32,7 @@
     methods: {
       imgLoad() {
         if (++this.count == this.imagesLength) {
+          console.log('EMIT image load');
           this.$emit("imageLoad")
         }
       }

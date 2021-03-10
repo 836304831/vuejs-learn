@@ -1,14 +1,14 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav"></detail-nav-bar>
+    <detail-nav-bar class="detail-nav" @titleClick="titleClick"></detail-nav-bar>
     <scroll class="content" ref="scroll">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"></detail-goods-info>
-      <detail-param-info :param-info="paramsInfo"></detail-param-info>
-      <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
-      <goods-list :goods="recommends"></goods-list>
+      <detail-param-info ref="params" :param-info="paramsInfo"></detail-param-info>
+      <detail-comment-info ref="comment" :comment-info="commentInfo"></detail-comment-info>
+      <goods-list ref="recommend" :goods="recommends"></goods-list>
     </scroll>
   </div>
 
@@ -53,7 +53,9 @@
         paramsInfo: {},
         commentInfo: {},
         recommends: [],
-        itemImgListener: null
+        itemImgListener: null,
+        themeTopYs: [0, 100, 400, 600],
+        getThemeTopY: null
 
       }
     },
@@ -103,6 +105,29 @@
         this.recommends = res.data.list
 
       })
+
+      // 4. 数据加载后，调用该函数
+      // 更新title对应组件的offsetTop
+      this.$nextTick(() => {
+        //根据最新的数据，对应的DOM已经渲染完成
+        // 但是图片依然是没有加载完（目前获取到的offsetTop不包含其中的图片）
+        // offsetTop值不对时，绝大多数情况下时因为图片的问题
+        // this.themeTopYs = []
+        // this.themeTopYs.push(0)
+        // this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+        // this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+        // this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+        // console.log('themeTopYs:' + this.themeTopYs);
+      })
+
+      // 防抖函数生成
+      // this.getThemeTopY = debounce(() => {
+      //   this.themeTopYs = []
+      //   this.themeTopYs.push(0)
+      //   this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+      //   this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+      //   this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+      // }, 200)
     },
     activated() {
       'activated------------'
@@ -120,15 +145,40 @@
         newRefresh()
       }
       this.$bus.$on('itemImageLoad', this.itemImgListener)
+
     },
     methods: {
       imageLoad() {
+        console.log("***********IMAGElOAD");
         this.$refs.scroll.refresh()
+
+        let newRefresh = debounce(this.$refs.scroll.refresh, 100)
+        this.itemImgListener = () =>{
+          newRefresh()
+        }
+        // 更新title主题的Y值,调用防抖函数
+        // this.getThemeTopY()
+        // console.log('themeTopYs:' + this.themeTopYs);
+      },
+      titleClick(index) {
+        console.log('titleIndex:', index);
+        console.log(this.themeTopYs);
+        this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 200)
       }
     },
     destroyed() {
       console.log('destroyed----------------');
       this.$bus.$off('itemImgLoad', this.itemImgListener)
+    },
+    updated() {
+      // 组件创建后调用， 可用于更新themeTopY
+      // 但依然存在图片没有加载完成的问题
+      this.themeTopYs = []
+      this.themeTopYs.push(0)
+      this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+      this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+      console.log('themeTopYs:' + this.themeTopYs);
     }
   }
 </script>

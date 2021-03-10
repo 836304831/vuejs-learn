@@ -102,3 +102,18 @@
               this.saveY = this.$refs.scroll.getScrollY()
               console.log(this.saveY);
             }
+11. mixin的使用
+    11.1 创建混入对象：const mixin = {}
+    11.2 组件对象中： mixins: [mixin]
+
+12. 商品详情展示部分：标题和内容的联动效果
+    12.1 点击标题，滚动到对应的主题内容
+        - 在detail中监听标题的点击，获取index
+        - 滚动到对应的对应内容位置：
+            - 获取所有主题组件的offsetTop
+            - 问题：在哪里才能获取到正确的offsetTop
+                - 1. created中获取：不行，无法获取元素，因为部分有v-if的操作
+                - 2. mounted中获取：不行，数据还没有获取到
+                - 3. 获取到数据的回调：不行，DOM还没有完成渲染，尤其需要渲染图片较多的时候
+                - 4. 在created中使用$nextTick获取：不行，因为书图片的高度没有计算在内，渲染延迟的问题导致
+                - 5. 在图片加载完成后获取图片的高度才是正确的：要么在updated中获取，要么监听图片加载完成后获取
