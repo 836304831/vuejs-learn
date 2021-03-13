@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav" @titleClick="titleClick"></detail-nav-bar>
-    <scroll class="content" ref="scroll">
+    <detail-nav-bar ref="detailNav" class="detail-nav" @titleClick="titleClick" :current-index="currentIndex"></detail-nav-bar>
+    <scroll class="content" ref="scroll" v-bind:probe-type="3" @scroll="detailScroll">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -10,6 +10,8 @@
       <detail-comment-info ref="comment" :comment-info="commentInfo"></detail-comment-info>
       <goods-list ref="recommend" :goods="recommends"></goods-list>
     </scroll>
+    <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
+    <detail-bottom-bar/>
   </div>
 
 </template>
@@ -22,9 +24,13 @@
   import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
   import DetailParamInfo from "@/views/detail/childComps/DetailParamInfo";
   import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
+  import DetailBottomBar from "@/views/detail/childComps/DetailBottomBar";
 
   import Scroll from "@/components/common/scroll/Scroll";
   import GoodsList from "@/components/content/goods/GoodsList";
+  import {BACK_POSITION} from "@/common/constant"
+  import {backTopMixin} from "@/common/mixin";
+
 
   import {getDetail, getRecommend, Goods, Shop, GoodsParam} from "@/network/detail"
   import {getDetailDataDemo, getRecommendDataDemo} from './detailDemo'
@@ -41,8 +47,10 @@
       DetailParamInfo,
       DetailCommentInfo,
       GoodsList,
+      DetailBottomBar,
       Scroll
     },
+    mixins: [backTopMixin],
     data() {
       return {
         iid: null,
@@ -55,7 +63,8 @@
         recommends: [],
         itemImgListener: null,
         themeTopYs: [0, 100, 400, 600],
-        getThemeTopY: null
+        getThemeTopY: null,
+        currentIndex: 0
 
       }
     },
@@ -164,6 +173,25 @@
         console.log('titleIndex:', index);
         console.log(this.themeTopYs);
         this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 200)
+      },
+      detailScroll(position) {
+
+        scrollY = -position.y
+        // console.log("detailScroll-----", scrollY);
+        // console.log('themeTopYs--', this.themeTopYs)
+        for (let i = this.themeTopYs.length - 1; i >= 0; i--) {
+          if (scrollY > this.themeTopYs[i]) {
+            this.currentIndex = i
+            // 也可以不需要使用props传递参数，直接获取子组件的变量然后复制, 如下：
+            this.$refs.detailNav.currentIndex = this.currentIndex
+            break
+          }
+        }
+        // console.log('titleIndex--', this.titleIndex)
+
+        // 2. 决定tabControl是否吸顶（position: fixed）
+        this.isTabFixed = (-position.y) > BACK_POSITION
+
       }
     },
     destroyed() {
@@ -197,7 +225,7 @@
     background-color: #fff;
   }
   .content {
-    height: calc(100% - 44px);
+    height: calc(100% - 44px - 50px);
     background-color: #fff;
   }
 

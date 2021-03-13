@@ -27,6 +27,12 @@
     components: {
       NavBar
     },
+    // props: {
+    //   currentIndex: {
+    //     type: Number,
+    //     default: 0
+    //   }
+    // },
     data() {
       return {
         titles: ['商品', '参数', '评价', '推荐'],
@@ -42,7 +48,13 @@
         this.$router.back()
         // this.$router.go(-1)
       }
+    },
+    mounted() {
+      if (this.titleIndex !== this.currentIndex) {
+        this.currentIndex = this.titleIndex
+      }
     }
+
 
   }
 </script>

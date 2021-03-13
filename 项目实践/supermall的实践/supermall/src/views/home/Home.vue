@@ -190,11 +190,11 @@
         // console.log(position);
         // 因为数据较少，要根据具体的手机信号设置该值，否则看不到效果，目前该值使用Moto G4可以看到效果
         this.isShowBackTop = (-position.y) > this.tabOffsetTop
-        console.log('tabOffsetTop: '+ this.tabOffsetTop);
+        // console.log('tabOffsetTop: '+ this.tabOffsetTop);
 
         // 2. 决定tabControl是否吸顶（position: fixed）
         this.isTabFixed = (-position.y) > this.tabOffsetTop
-        console.log("isTabFixed: " + this.isTabFixed);
+        // console.log("isTabFixed: " + this.isTabFixed);
       },
       loadMore() {
         console.log("home上拉加载更多");
