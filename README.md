@@ -182,14 +182,14 @@ v-on修饰符:
 <button @click.once="btn2Click">按钮</button>
 ```
 
-4. v-if基本使用
 #### 条件判断
+1. v-if基本使用
 ```html
 <!-- v-if基本使用:-->
 <h2 v-if="isShow">{{msg}}</h2>
 ```
 
-5. v-if/v-else-if/v-else的使用
+2. v-if/v-else-if/v-else的使用
 ```html
 <!--v-if/v-else-if/v-else的使用-->
 <h1 v-if="score>90">优秀</h1>
@@ -198,7 +198,7 @@ v-on修饰符:
 <h1 v-else>不及格</h1>
 ```
 
-6. v-show的使用
+3. v-show的使用
 ```html
 <!--v-show的使用，功能同v-if:-->
 <h2 v-if="isShow" id="aaa">{{msg}}</h2>
