@@ -31,16 +31,17 @@
     },
     methods: {
       imgLoad() {
+        console.log('emit image load', this.count, this.imagesLength);
         if (++this.count == this.imagesLength) {
           console.log('EMIT image load');
-          this.$emit("imageLoad")
+          this.$emit("detailImageLoad")
         }
       }
     },
     watch: {
       // 获取图片长度
       detailInfo() {
-        this.imagesLength == this.detailInfo.detailImage[0].list.length
+        this.imagesLength = this.detailInfo.detailImage[0].list.length
       }
     }
   }

@@ -5,7 +5,7 @@
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
-      <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"></detail-goods-info>
+      <detail-goods-info :detail-info="detailInfo" @detailImageLoad="detailImageLoad"></detail-goods-info>
       <detail-param-info ref="params" :param-info="paramsInfo"></detail-param-info>
       <detail-comment-info ref="comment" :comment-info="commentInfo"></detail-comment-info>
       <goods-list ref="recommend" :goods="recommends"></goods-list>
@@ -120,14 +120,14 @@
         // console.log('themeTopYs:' + this.themeTopYs);
       })
 
-      // 防抖函数生成
-      // this.getThemeTopY = debounce(() => {
-      //   this.themeTopYs = []
-      //   this.themeTopYs.push(0)
-      //   this.themeTopYs.push(this.$refs.params.$el.offsetTop)
-      //   this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
-      //   this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
-      // }, 200)
+      // 防抖函数生成, 在图片加载后调用
+      this.getThemeTopY = debounce(() => {
+        this.themeTopYs = []
+        this.themeTopYs.push(0)
+        this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+        this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+        this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+      }, 200)
     },
     activated() {
       'activated------------'
@@ -148,7 +148,7 @@
 
     },
     methods: {
-      imageLoad() {
+      detailImageLoad() {
         console.log("***********IMAGElOAD");
         this.$refs.scroll.refresh()
 
@@ -157,8 +157,8 @@
           newRefresh()
         }
         // 更新title主题的Y值,调用防抖函数
-        // this.getThemeTopY()
-        // console.log('themeTopYs:' + this.themeTopYs);
+        this.getThemeTopY()
+        console.log('themeTopYs:' + this.themeTopYs);
       },
       titleClick(index) {
         console.log('titleIndex:', index);
@@ -173,12 +173,12 @@
     updated() {
       // 组件创建后调用， 可用于更新themeTopY
       // 但依然存在图片没有加载完成的问题
-      this.themeTopYs = []
-      this.themeTopYs.push(0)
-      this.themeTopYs.push(this.$refs.params.$el.offsetTop)
-      this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
-      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
-      console.log('themeTopYs:' + this.themeTopYs);
+      // this.themeTopYs = []
+      // this.themeTopYs.push(0)
+      // this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+      // this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+      // this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+      // console.log('themeTopYs:' + this.themeTopYs);
     }
   }
 </script>
