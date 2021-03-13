@@ -44,7 +44,7 @@ export function getDetailDataDemo(iid) {
           discountDesc: '活动价',
           price: '￥38.5',
           oldPrice: '￥69.0',
-          readPrice: '38.5',
+          lowNowPrice: '38.5',
           title: "【仲陌美】2021年春季新款长袖T恤学生韩版复古白色青春靓丽款",
           topImages: [
             require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),
@@ -162,7 +162,7 @@ export function getDetailDataDemo(iid) {
           discountDesc: '活动价',
           price: '￥120.5',
           oldPrice: '￥150.0',
-          readPrice: '30',
+          lowNowPrice: '30',
           title: "【美特斯邦威】2021年春季新款长袖T恤学生韩版复古白色青春靓丽款",
           topImages: [
             require('../../assets/server/imgs/detail/swiper/boat-5000655__340.webp'),
@@ -275,7 +275,7 @@ export function getDetailDataDemo(iid) {
           discountDescDesc: '活动价',
           price: '￥1222.5',
           oldPrice: '￥2222.5',
-          readPrice: '1000',
+          lowNowPrice: '1000',
           title: "【耐克】2021年春季新款长袖T恤学生韩版复古白色青春靓丽款",
           topImages: [
             require('../../assets/server/imgs/detail/swiper/book-5953965__340.webp'),
@@ -390,7 +390,7 @@ export function getDetailDataDemo(iid) {
           discountDesc: '活动价',
           price: '￥500',
           oldPrice: '￥800',
-          readPrice: '300',
+          lowNowPrice: '300',
           title: "【乔丹】2021年春季新款长袖T恤学生韩版复古白色青春靓丽款",
           topImages: [
             require('../../assets/server/imgs/detail/swiper/chapel-5878656__340.webp'),
@@ -505,7 +505,7 @@ export function getDetailDataDemo(iid) {
           discountDesc: '活动价',
           price: '￥460.0',
           oldPrice: '￥660.0',
-          readPrice: '200',
+          lowNowPrice: '200',
           title: "【新百伦】2021年春季新款长袖T恤学生韩版复古白色青春靓丽款",
           topImages: [
             require('../../assets/server/imgs/detail/swiper/book-5953965__340.webp'),
@@ -624,7 +624,7 @@ export function getDetailDataDemo(iid) {
           discountDesc: '活动价',
           price: '￥1356',
           oldPrice: '￥1256.0',
-          readPrice: '100.0',
+          lowNowPrice: '100.0',
           title: "【鸿星尔克】2021年春季新款长袖T恤学生韩版复古白色青春靓丽款",
           topImages: [
             require('../../assets/server/imgs/detail/swiper/woman-6010056__340.webp'),

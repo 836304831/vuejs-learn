@@ -11,7 +11,7 @@
       <goods-list ref="recommend" :goods="recommends"></goods-list>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addToCart="addToCart"/>
   </div>
 
 </template>
@@ -192,6 +192,21 @@
         // 2. 决定tabControl是否吸顶（position: fixed）
         this.isTabFixed = (-position.y) > BACK_POSITION
 
+      },
+      addToCart() {
+        // 1. 获取添加到购物车的信息
+        const product = {}
+        product.image = this.topImages[0]
+        product.title = this.goods.title
+        product.desc = this.goods.desc
+        product.price = this.goods.realPrice
+        product.iid = this.iid
+
+        // 2. 添加到共享（vuex）中
+        // commit对应commit
+        // this.$store.commit("addCart", product)
+
+        this.$store.dispatch('addCart', product)
       }
     },
     destroyed() {
