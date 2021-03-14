@@ -36,6 +36,8 @@
   import {getDetailDataDemo, getRecommendDataDemo} from './detailDemo'
   import {debounce} from "@/common/utils";
 
+  // 见vuex的actions函数映射过来，这样会简化操作，跟this.func一样使用。
+  import {mapActions} from 'vuex'
   export default {
     name: "Detail",
     components: {
@@ -157,6 +159,7 @@
 
     },
     methods: {
+      ...mapActions(['addCart']),
       detailImageLoad() {
         console.log("***********IMAGElOAD");
         this.$refs.scroll.refresh()
@@ -206,7 +209,18 @@
         // commit对应commit
         // this.$store.commit("addCart", product)
 
-        this.$store.dispatch('addCart', product)
+        // dispatch的调用可以通过mapActions映射简化
+        // this.$store.dispatch('addCart', product).then(res => {
+        //   console.log(res);
+        // })
+        // 通过mapActions简化后可写为
+        this.addCart(product).then(res => {
+          console.log(res)
+          this.$toast.methods.show(res, 2000)
+          // this.$toast.show(res, 2000)
+        })
+
+        // 3. 添加购物车成功
       }
     },
     destroyed() {
