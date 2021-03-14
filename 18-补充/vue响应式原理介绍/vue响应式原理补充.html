@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+1. app.message修改数据，vue内部是如何监听message数据的改变
+    Object.definePropery -> 监听对象的改变
+
+2. 当数据发生改变，Vue是如何知道要通知那些人，刷新页面
+    发布者订阅者模式
+-->
+<div id="app">
+  {{message}}
+  {{message}}
+  {{message}}
+
+  {{name}}
+</div>
+
+<script>
+  // 在console操作obj的复制的显示进行验证
+  const obj = {
+    message: 'hello',
+    name: 'acedar'
+  }
+  Object.keys(obj).forEach(key => {
+    let value = obj[key]
+    Object.defineProperty(obj, key, {
+      set(newValue) {
+        // 根据解析html代码，获取到哪些人使用该属性
+        console.log('监听' + key + '改变')
+        value = newValue
+        dep.notigy()
+      },
+      get() {
+        console.log("获取" + key + '对应的值')
+        return value
+      }
+    })
+  })
+
+  // 发布者
+  class Dep {
+    constructor() {
+      this.subs = []
+    }
+    addSub(watcher) {
+      this.subs.push(watcher)
+    }
+
+    notigy() {
+      this.subs.forEach(item => {
+        item.update()
+      })
+    }
+  }
+
+  // 订阅者
+  class Watcher {
+    constructor(name) {
+      this.name = name
+    }
+    update() {
+      console.log(this.name + "发生update");
+    }
+  }
+
+  const dep = new Dep()
+  const w1 = new Watcher('张三')
+  dep.addSub(w1)
+  const w2 = new Watcher('李四')
+  dep.addSub(w2)
+  const w3 = new Watcher('王五')
+  dep.addSub(w3)
+
+
+</script>
+<!-- 需要引入正确的vnode_modules才可以运行该文件 -->
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello',
+      name: 'acedar'
+    }
+  })
+
+</script>
+</body>
+</html>
