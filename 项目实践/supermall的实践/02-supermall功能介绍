@@ -147,3 +147,33 @@
         - 全选加购商品
         - 计算选中加购商品总价格
         - 去结算：展示选中的结算商品数量
+
+17. 购物车的全选按钮
+    17.1 显示的状态
+        - 若有一个不选中，全选就为不选中
+    17.2 点击全选按钮
+        - 若原来都是选中，点击后变为不选中
+        - 若原来都是不选中（某些不选中），则点击之后选中全部
+
+18. 添加购物车弹窗
+    18.1 vuex补充
+        - actions可以返回一个Promise对象
+        - 使用mapActions from ‘vuex’可以简化调用方式
+    18.2 Toast封装
+        - 普通封装方式（较为常规）
+        - 插件封装方式，见components/common/toast及main.js的安装，及detail.vue中的使用this.$toast.methods.show(res, 2000)
+
+20. 补充
+    20.1 fastClick减少点击延迟
+        - 安装faskclick： npm install fastclick
+        - 导入（main.js）: import FastClick from 'fastclick'
+        - 调用attach函数：FastClick.attach(document.body)
+    20.2 图片的懒加载
+        - 什么是图片懒加载： 图片需要在屏幕显示时加载
+        - 安装：npm install vue-lazyload --save
+        - 导入：import VueLazyload  from "vue-lazyload";
+        - vue.use: Vue.use(VueLazyload)
+        - 修改图片显示方式： <img src='img'> -> <img v-lazy='img')
+    20.3 见px像素信息统一修改成vw信息
+        - 安装插件：npm install postcss-px-to-viewport --save-dev
+        - 修改postcss.config.js(见文件内容)

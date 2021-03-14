@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import FastClick from 'fastclick'
+import VueLazyload  from "vue-lazyload";
 
 import router  from "./router"
 import store from "@/store";
@@ -14,6 +15,11 @@ Vue.prototype.$bus = new Vue()
 Vue.use(toast)
 
 FastClick.attach(document.body)
+
+// 使用懒加载方式
+Vue.use(VueLazyload, {
+  loading: require('./assets/imgs/common/placeholder.png')
+})
 
 new Vue({
   render: h => h(App),
